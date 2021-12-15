@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -10,6 +12,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 
 import { UiModule } from '@appbit/ui';
+import { AccordionModule } from 'primeng/accordion';
 
 const routes = [
   { path: '', component: HomePageComponent },
@@ -25,7 +28,13 @@ const routes = [
     HeaderComponent,
     FooterComponent,
   ],
-  imports: [BrowserModule, RouterModule.forRoot(routes), UiModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
+    UiModule,
+    AccordionModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
