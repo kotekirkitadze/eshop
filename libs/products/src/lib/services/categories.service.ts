@@ -9,9 +9,13 @@ import { Category } from '../models/category';
 export class CategoriesService {
   constructor(private http: HttpClient) {}
 
+  private api = 'http://localhost:3000/api/v1/categories/';
+
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(
-      'http://localhost:3000/api/v1/categories/'
-    );
+    return this.http.get<Category[]>(this.api);
+  }
+
+  createCategory(data: Category): Observable<Category> {
+    return this.http.post<Category>(this.api, data);
   }
 }

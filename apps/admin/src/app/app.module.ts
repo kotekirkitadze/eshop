@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
@@ -16,8 +18,19 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { CategoriesService } from '@appbit/products';
+import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
-const UX_MODULE = [CardModule, ToolbarModule, ButtonModule, TableModule];
+const UX_MODULE = [
+  CardModule,
+  ToolbarModule,
+  ButtonModule,
+  TableModule,
+  InputTextModule,
+  ToastModule,
+];
 
 const routes = [
   {
@@ -26,6 +39,7 @@ const routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'categories', component: CategoriesListComponent },
+      { path: 'categories/form', component: CategoriesFormComponent },
     ],
   },
 ];
@@ -38,14 +52,18 @@ const routes = [
     ShellComponent,
     SidebarComponent,
     CategoriesListComponent,
+    CategoriesFormComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
     ...UX_MODULE,
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
