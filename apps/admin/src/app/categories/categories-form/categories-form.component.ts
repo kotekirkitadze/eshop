@@ -7,16 +7,16 @@ import { MessageService } from 'primeng/api';
 import { timer } from 'rxjs';
 
 @Component({
-  selector: 'appbit-categories-form',
+  selector: 'admin-categories-form',
   templateUrl: './categories-form.component.html',
   styleUrls: ['./categories-form.component.css'],
 })
 export class CategoriesFormComponent implements OnInit {
   form: FormGroup;
-  isSubmitted: boolean = false;
-  editMode: boolean = false;
+  isSubmitted = false;
+  editMode = false;
 
-  currentCategoryId: string = '';
+  currentCategoryId = '';
 
   constructor(
     private messageService: MessageService,
@@ -30,6 +30,7 @@ export class CategoriesFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       icon: ['', Validators.required],
+      color: ['#fff'],
     });
     this._checkEditMode();
   }
@@ -44,6 +45,7 @@ export class CategoriesFormComponent implements OnInit {
           .subscribe((category: Category) => {
             this.getCategoryForm.name.setValue(category.name);
             this.getCategoryForm.icon.setValue(category.icon);
+            this.getCategoryForm.color.setValue(category.color);
           });
       } else {
         this.editMode = false;
@@ -62,6 +64,7 @@ export class CategoriesFormComponent implements OnInit {
       name: this.getCategoryForm.name.value,
       icon: this.getCategoryForm.icon.value,
       id: this.currentCategoryId,
+      color: this.getCategoryForm.color.value,
     };
 
     if (this.editMode) {
@@ -69,22 +72,19 @@ export class CategoriesFormComponent implements OnInit {
     } else {
       this._createCategory(categoryData);
     }
-
-    // console.log(this.getCategory.name.value);
-    // console.log(this.getCategory.icon.value);
   }
 
   private __updateCategory(category: Category) {
     this.categoriesService.updateCategory(category).subscribe(
-      (d) => {
+      (category: Category) => {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: 'Category is updated',
+          detail: `Category ${category.name} is updated`,
         });
-        timer(1000).subscribe((done) => this.location.back());
+        timer(1000).subscribe(() => this.location.back());
       },
-      (err) => {
+      () => {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
@@ -96,15 +96,15 @@ export class CategoriesFormComponent implements OnInit {
 
   private _createCategory(newCategory: Category) {
     this.categoriesService.createCategory(newCategory).subscribe(
-      (d) => {
+      (category: Category) => {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: 'Category is added',
+          detail: `Category ${category.name} is added`,
         });
-        timer(1000).subscribe((done) => this.location.back());
+        timer(1000).subscribe(() => this.location.back());
       },
-      (err) => {
+      () => {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
@@ -116,5 +116,8 @@ export class CategoriesFormComponent implements OnInit {
 
   get getCategoryForm() {
     return this.form.controls;
+  }
+  goBack() {
+    this.location.back();
   }
 }

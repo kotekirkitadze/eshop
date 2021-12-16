@@ -17,13 +17,13 @@ import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import { CategoriesService } from '@appbit/products';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { ColorPickerModule } from 'primeng/colorpicker';
 
 const UX_MODULE = [
   CardModule,
@@ -33,6 +33,7 @@ const UX_MODULE = [
   InputTextModule,
   ToastModule,
   ConfirmDialogModule,
+  ColorPickerModule,
 ];
 
 const routes = [

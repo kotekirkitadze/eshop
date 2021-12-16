@@ -2,14 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoriesService, Category } from '@appbit/products';
 
-import {
-  ConfirmationService,
-  ConfirmEventType,
-  MessageService,
-} from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'appbit-categories-list',
+  selector: 'admin-categories-list',
   templateUrl: './categories-list.component.html',
   styleUrls: ['./categories-list.component.css'],
 })
@@ -34,15 +30,15 @@ export class CategoriesListComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.categoriesService.deleteCategory(categoryId).subscribe(
-          (d) => {
+          (category: Category) => {
             this.messageService.add({
               severity: 'success',
               summary: 'Success',
-              detail: 'Category is deleted',
+              detail: `Category ${category.name} is deleted`,
             });
             this._getCategories();
           },
-          (err) => {
+          () => {
             this.messageService.add({
               severity: 'error',
               summary: 'Error',
@@ -51,7 +47,6 @@ export class CategoriesListComponent implements OnInit {
           }
         );
       },
-      reject: (type) => {},
     });
   }
 
