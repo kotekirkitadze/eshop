@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CategoriesService, Category } from '@appbit/products';
 
 import {
@@ -18,7 +19,8 @@ export class CategoriesListComponent implements OnInit {
   constructor(
     private categoriesService: CategoriesService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -58,5 +60,9 @@ export class CategoriesListComponent implements OnInit {
       this.categories = categories;
     });
     // this.categories$ = this.categoriesService.getCategories();
+  }
+
+  updateCategory(categoryId: string) {
+    this.router.navigateByUrl(`categories/form/${categoryId}`);
   }
 }

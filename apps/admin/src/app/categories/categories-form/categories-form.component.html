@@ -1,13 +1,18 @@
 <p-toast></p-toast>
 <div class="admin-page">
-  <p-card header="Add category" subheader="You can add category here">
+  <p-card
+    [header]="editMode ? 'Edit Category' : 'Add category'"
+    [subheader]="
+      editMode ? 'You can edit category here' : 'You can add category here'
+    "
+  >
     <div class="grid mb-5">
       <div class="col-12">
         <p-toolbar>
           <div class="p-toolbar-group-left"></div>
           <div class="p-toolbar-group-right">
             <p-button
-              label="Create"
+              [label]="editMode ? 'Edit' : 'Create'"
               icon="pi pi-plus"
               styleClass="p-button-primary mr-2"
               (onClick)="onSubmit()"
@@ -29,7 +34,7 @@
               <label for="name">Name</label>
               <input formControlName="name" id="name" type="text" pInputText />
               <small
-                *ngIf="getCategory.name.invalid && isSubmitted"
+                *ngIf="getCategoryForm.name.invalid && isSubmitted"
                 class="p-error"
                 >Name is required</small
               >
@@ -38,7 +43,7 @@
               <label for="icon">Icon</label>
               <input formControlName="icon" id="icon" type="text" pInputText />
               <small
-                *ngIf="getCategory.icon.invalid && isSubmitted"
+                *ngIf="getCategoryForm.icon.invalid && isSubmitted"
                 class="p-error"
                 >Icon is required</small
               >
