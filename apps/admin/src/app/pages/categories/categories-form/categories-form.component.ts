@@ -30,7 +30,7 @@ export class CategoriesFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       icon: ['', Validators.required],
-      color: ['#fff'],
+      color: ['#e9a6a6'],
     });
     this._checkEditMode();
   }

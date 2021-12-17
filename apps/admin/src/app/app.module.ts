@@ -10,14 +10,16 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ShellComponent } from './shared/shell/shell.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
+import { CategoriesListComponent } from './pages/categories/categories-list/categories-list.component';
+import { ProductsListComponent } from './pages/products/products-list/products-list.component';
+import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
 
 //primeng
 import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
+import { CategoriesFormComponent } from './pages/categories/categories-form/categories-form.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
@@ -45,6 +47,9 @@ const routes = [
       { path: 'categories', component: CategoriesListComponent },
       { path: 'categories/form', component: CategoriesFormComponent },
       { path: 'categories/form/:id', component: CategoriesFormComponent },
+      { path: 'products', component: ProductsListComponent },
+      { path: 'products/form', component: ProductsFormComponent },
+      { path: 'products/form/:id', component: ProductsFormComponent },
     ],
   },
 ];
@@ -58,6 +63,8 @@ const routes = [
     SidebarComponent,
     CategoriesListComponent,
     CategoriesFormComponent,
+    ProductsListComponent,
+    ProductsFormComponent,
   ],
   imports: [
     BrowserModule,
