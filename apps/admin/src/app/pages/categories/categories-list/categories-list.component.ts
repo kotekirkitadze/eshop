@@ -25,7 +25,7 @@ export class CategoriesListComponent implements OnInit {
 
   deleteCategory(categoryId: string) {
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to delete product?',
+      message: 'Are you sure that you want to delete this category?',
       header: 'Delete Category',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

@@ -18,7 +18,12 @@
     </div>
     <div class="grid">
       <div class="col-12">
-        <p-table [value]="products" styleClass="p-datatable-gridlines">
+        <p-table
+          [paginator]="true"
+          [rows]="10"
+          [value]="products"
+          styleClass="p-datatable-gridlines"
+        >
           <ng-template pTemplate="header">
             <tr>
               <th pSortableColumn="name">
@@ -28,14 +33,14 @@
               <th pSortableColumn="price">
                 Price <p-sortIcon field="price"></p-sortIcon>
               </th>
-              <th pSortableColumn="stock">
-                Stock <p-sortIcon field="stock"></p-sortIcon>
+              <th pSortableColumn="countInStock">
+                Stock <p-sortIcon field="countInStock"></p-sortIcon>
               </th>
-              <th pSortableColumn="category">
-                Category <p-sortIcon field="category"></p-sortIcon>
+              <th pSortableColumn="name">
+                Category <p-sortIcon field="name"></p-sortIcon>
               </th>
-              <th pSortableColumn="created">
-                Created at <p-sortIcon field="created"></p-sortIcon>
+              <th pSortableColumn="dateCreated">
+                Created at <p-sortIcon field="dateCreated"></p-sortIcon>
               </th>
 
               <th></th>

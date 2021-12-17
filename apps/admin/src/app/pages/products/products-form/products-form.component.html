@@ -12,7 +12,7 @@
           <div class="p-toolbar-group-left"></div>
           <div class="p-toolbar-group-right">
             <p-button
-              [label]="editMode ? 'Edit' : 'Create'"
+              [label]="editMode ? 'Update' : 'Create'"
               icon="pi pi-plus"
               styleClass="p-button-primary mr-2"
               (onClick)="onSubmit()"
@@ -35,7 +35,7 @@
               <label for="name">Name</label>
               <input formControlName="name" id="name" type="text" pInputText />
               <small
-                *ngIf="productForm.name.invalid && isSubmitted"
+                *ngIf="getProductForm.name.invalid && isSubmitted"
                 class="p-error"
                 >Name is required</small
               >
@@ -49,7 +49,7 @@
                 pInputText
               />
               <small
-                *ngIf="productForm.brand.invalid && isSubmitted"
+                *ngIf="getProductForm.brand.invalid && isSubmitted"
                 class="p-error"
                 >Brand is required</small
               >
@@ -63,7 +63,7 @@
                 [useGrouping]="false"
               ></p-inputNumber>
               <small
-                *ngIf="productForm.price.invalid && isSubmitted"
+                *ngIf="getProductForm.price.invalid && isSubmitted"
                 class="p-error"
                 >Price is required</small
               >
@@ -79,7 +79,7 @@
                 [useGrouping]="false"
               ></p-inputNumber>
               <small
-                *ngIf="productForm.countInStock.invalid && isSubmitted"
+                *ngIf="getProductForm.countInStock.invalid && isSubmitted"
                 class="p-error"
                 >Count in Stock is required</small
               >
@@ -98,7 +98,7 @@
               ></p-dropdown>
 
               <small
-                *ngIf="productForm.category.invalid && isSubmitted"
+                *ngIf="getProductForm.category.invalid && isSubmitted"
                 class="p-error"
                 >Category is required</small
               >
@@ -117,7 +117,7 @@
                 [cols]="30"
               ></textarea>
               <small
-                *ngIf="productForm.description.invalid && isSubmitted"
+                *ngIf="getProductForm.description.invalid && isSubmitted"
                 class="p-error"
                 >Description is required</small
               >
@@ -139,6 +139,11 @@
               />
               <div class="col-2 mt-2 pl-0">
                 <img style="width: 100%" [src]="imageDisplay" alt="" />
+                <small
+                  *ngIf="getProductForm.image.invalid && isSubmitted"
+                  class="p-error"
+                  >Image is required</small
+                >
               </div>
             </div>
           </div>
