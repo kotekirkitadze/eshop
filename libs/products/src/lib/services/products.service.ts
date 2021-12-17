@@ -17,11 +17,11 @@ export class ProductsService {
     return this.http.get<Category[]>(this.api);
   }
 
-  getProduct(productId: string): Observable<Product> {
+  getProductbyId(productId: string): Observable<Product> {
     return this.http.get<Product>(`${this.api}${productId}`);
   }
 
-  createProduct(productData: Product): Observable<Product> {
+  createProduct(productData: FormData): Observable<Product> {
     return this.http.post<Product>(this.api, productData);
   }
 
