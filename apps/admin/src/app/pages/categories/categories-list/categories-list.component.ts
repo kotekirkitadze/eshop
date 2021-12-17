@@ -57,7 +57,7 @@ export class CategoriesListComponent implements OnInit {
     // this.categories$ = this.categoriesService.getCategories();
   }
 
-  updateCategory(categoryId: string) {
+  updateCategory(categoryId: string): void {
     this.router.navigateByUrl(`categories/form/${categoryId}`);
   }
 }
