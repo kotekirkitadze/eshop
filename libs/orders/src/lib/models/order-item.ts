@@ -1,4 +1,6 @@
+import { Product } from '@appbit/products';
+
 export class OrderItem {
-  product?: string;
-  quantity?: string;
+  product?: Product;
+  quantity?: number;
 }

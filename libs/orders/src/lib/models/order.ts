@@ -1,8 +1,9 @@
+import { User } from '@appbit/users';
 import { OrderItem } from './order-item';
 
 export class Order {
   id?: string;
-  orderItem?: OrderItem;
+  orderItems?: OrderItem[];
   shippingAddress1?: string;
   shippingAddress2?: string;
   city?: string;
@@ -11,6 +12,6 @@ export class Order {
   phone?: string;
   status?: number;
   totalPrice?: string;
-  user?: string;
+  user?: User;
   dateOrdered?: string;
 }
