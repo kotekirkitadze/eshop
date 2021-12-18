@@ -57,7 +57,6 @@ export class OrdersDetailComponent implements OnInit {
 
   private _getOrder() {
     this.router.params.subscribe((params) => {
-      console.log(params.id);
       if (params.id) {
         this.orderService.getOrderById(params.id).subscribe((order: Order) => {
           this.order = order;

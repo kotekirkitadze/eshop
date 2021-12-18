@@ -106,7 +106,6 @@ export class ProductsFormComponent implements OnInit {
     Object.keys(this.getProductForm).map((key) => {
       productFormData.append(key, this.getProductForm[key].value);
     });
-    console.log(productFormData);
 
     if (this.editMode) {
       this._updateProduct(productFormData);
@@ -138,7 +137,6 @@ export class ProductsFormComponent implements OnInit {
   }
 
   private _addProduct(productFormData: FormData) {
-    console.log(productFormData);
     this.productsService.createProduct(productFormData).subscribe(
       (product: Product) => {
         this.messageService.add({

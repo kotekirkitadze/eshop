@@ -59,7 +59,6 @@ export class UsersFormComponent implements OnInit {
         name: entry[1],
       };
     });
-    console.log(this.countries);
   }
 
   private _checkEditMode() {
@@ -148,7 +147,6 @@ export class UsersFormComponent implements OnInit {
       country: this.getUserForm.country.value,
     };
 
-    console.log('userData', userData);
     if (this.editMode) {
       this.__updateUser(userData);
     } else {

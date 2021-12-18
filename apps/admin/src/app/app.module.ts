@@ -14,6 +14,9 @@ import { CategoriesListComponent } from './pages/categories/categories-list/cate
 import { ProductsListComponent } from './pages/products/products-list/products-list.component';
 import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
 
+//lib modules
+import { UsersModule } from '@appbit/users';
+
 //primeng
 import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -101,6 +104,7 @@ const routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    UsersModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
     ...UX_MODULE,
   ],
