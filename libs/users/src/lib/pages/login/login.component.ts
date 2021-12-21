@@ -49,13 +49,11 @@ export class LoginComponent implements OnInit {
     this.authService.login(loginData.email, loginData.password).subscribe(
       (user) => {
         this.authError = false;
-        console.log(user.token);
         this.localStorageService.setToken(user.token);
         this.router.navigate(['/']);
       },
       (error: HttpErrorResponse) => {
         this.authError = true;
-        console.log(error);
         if (error.status !== 404) {
           this.authMessage = 'There is a problem in server';
         }

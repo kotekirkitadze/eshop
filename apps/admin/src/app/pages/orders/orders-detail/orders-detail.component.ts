@@ -25,7 +25,6 @@ export class OrdersDetailComponent implements OnInit {
   }
 
   onStatusChange(event) {
-    console.log(event);
     this.orderService
       .updateOrderStatus({ status: event.value }, this.order.id)
       .subscribe(
