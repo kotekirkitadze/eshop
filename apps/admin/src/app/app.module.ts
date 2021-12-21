@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -15,7 +15,7 @@ import { ProductsListComponent } from './pages/products/products-list/products-l
 import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
 
 //lib modules
-import { AuthGuard, UsersModule } from '@appbit/users';
+import { AuthGuard, JwtInterceptor, UsersModule } from '@appbit/users';
 
 //primeng
 import { CardModule } from 'primeng/card';
@@ -109,7 +109,11 @@ const routes = [
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
     ...UX_MODULE,
   ],
-  providers: [MessageService, ConfirmationService],
+  providers: [
+    MessageService,
+    ConfirmationService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
