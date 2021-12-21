@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoriesService, Category } from '@appbit/products';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'admin-categories-list',
   templateUrl: './categories-list.component.html',
   styleUrls: ['./categories-list.component.css'],
 })
-export class CategoriesListComponent implements OnInit {
-  // categories$: Observable<Category[]> = this.categoriesService.getCategories();
+export class CategoriesListComponent implements OnInit, OnDestroy {
   categories: Category[] = [];
+  endSubs$: Subject<number> = new Subject<number>();
+
   constructor(
     private categoriesService: CategoriesService,
     private messageService: MessageService,
@@ -21,6 +23,11 @@ export class CategoriesListComponent implements OnInit {
 
   ngOnInit(): void {
     this._getCategories();
+  }
+
+  ngOnDestroy(): void {
+    this.endSubs$.next(1);
+    this.endSubs$.complete();
   }
 
   deleteCategory(categoryId: string) {
@@ -51,10 +58,12 @@ export class CategoriesListComponent implements OnInit {
   }
 
   private _getCategories() {
-    this.categoriesService.getCategories().subscribe((categories) => {
-      this.categories = categories;
-    });
-    // this.categories$ = this.categoriesService.getCategories();
+    this.categoriesService
+      .getCategories()
+      .pipe(takeUntil(this.endSubs$))
+      .subscribe((categories) => {
+        this.categories = categories;
+      });
   }
 
   updateCategory(categoryId: string): void {

@@ -1,22 +1,22 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CategoriesService, Category } from '@appbit/products';
 import { MessageService } from 'primeng/api';
-import { timer } from 'rxjs';
+import { Subject, takeUntil, timer } from 'rxjs';
 
 @Component({
   selector: 'admin-categories-form',
   templateUrl: './categories-form.component.html',
   styleUrls: ['./categories-form.component.css'],
 })
-export class CategoriesFormComponent implements OnInit {
+export class CategoriesFormComponent implements OnInit, OnDestroy {
   form: FormGroup;
   isSubmitted = false;
   editMode = false;
-
   currentCategoryId = '';
+  endSubs$: Subject<number> = new Subject<number>();
 
   constructor(
     private messageService: MessageService,
@@ -34,14 +34,19 @@ export class CategoriesFormComponent implements OnInit {
     });
     this._checkEditMode();
   }
+  ngOnDestroy(): void {
+    this.endSubs$.next(1);
+    this.endSubs$.complete();
+  }
 
   private _checkEditMode() {
-    this.route.params.subscribe((params) => {
+    this.route.params.pipe(takeUntil(this.endSubs$)).subscribe((params) => {
       if (params.id) {
         this.editMode = true;
         this.currentCategoryId = params.id;
         this.categoriesService
           .getCategoryById(params.id)
+          .pipe(takeUntil(this.endSubs$))
           .subscribe((category: Category) => {
             this.getCategoryForm.name.setValue(category.name);
             this.getCategoryForm.icon.setValue(category.icon);
@@ -74,43 +79,49 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   private __updateCategory(category: Category) {
-    this.categoriesService.updateCategory(category).subscribe(
-      (category: Category) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: `Category ${category.name} is updated`,
-        });
-        timer(1000).subscribe(() => this.location.back());
-      },
-      () => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Category is not updated',
-        });
-      }
-    );
+    this.categoriesService
+      .updateCategory(category)
+      .pipe(takeUntil(this.endSubs$))
+      .subscribe(
+        (category: Category) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: `Category ${category.name} is updated`,
+          });
+          timer(1000).subscribe(() => this.location.back());
+        },
+        () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Category is not updated',
+          });
+        }
+      );
   }
 
   private _createCategory(newCategory: Category) {
-    this.categoriesService.createCategory(newCategory).subscribe(
-      (category: Category) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: `Category ${category.name} is added`,
-        });
-        timer(1000).subscribe(() => this.location.back());
-      },
-      () => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Category is not added',
-        });
-      }
-    );
+    this.categoriesService
+      .createCategory(newCategory)
+      .pipe(takeUntil(this.endSubs$))
+      .subscribe(
+        (category: Category) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: `Category ${category.name} is added`,
+          });
+          timer(1000).subscribe(() => this.location.back());
+        },
+        () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Category is not added',
+          });
+        }
+      );
   }
 
   get getCategoryForm() {
