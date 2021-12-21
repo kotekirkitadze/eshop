@@ -13,6 +13,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 
 import { UiModule } from '@appbit/ui';
 import { AccordionModule } from 'primeng/accordion';
+import { NavComponent } from './shared/nav/nav.component';
 
 const routes = [
   { path: '', component: HomePageComponent },
@@ -27,6 +28,7 @@ const routes = [
     ProductListComponent,
     HeaderComponent,
     FooterComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,
