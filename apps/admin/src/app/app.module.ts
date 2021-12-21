@@ -15,7 +15,7 @@ import { ProductsListComponent } from './pages/products/products-list/products-l
 import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
 
 //lib modules
-import { UsersModule } from '@appbit/users';
+import { AuthGuard, UsersModule } from '@appbit/users';
 
 //primeng
 import { CardModule } from 'primeng/card';
@@ -65,6 +65,7 @@ const routes = [
   {
     path: '',
     component: ShellComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'categories', component: CategoriesListComponent },
