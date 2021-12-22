@@ -1,8 +1,8 @@
-<div class="product-item">
+<div class="product-item" *ngIf="product">
   <div class="product-item-wrapper">
-    <img src="" class="image" alt="" />
-    <h4 class="name">Product name</h4>
-    <h5 class="price">25$</h5>
+    <img [src]="product.image" class="image" alt="" />
+    <h4 class="name">{{ product.name }}</h4>
+    <h5 class="price">{{ product.price | currency }}</h5>
     <p-button
       styleClass="mt-3 add-to-cart"
       label="Add to cart"

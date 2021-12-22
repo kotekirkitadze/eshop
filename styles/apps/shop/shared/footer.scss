@@ -1,0 +1,25 @@
+footer {
+  background-color: var(--yellow-100);
+  min-height: 50px;
+  padding: 10px 25px;
+  width: 100%;
+  margin-top: 25px;
+
+  .production {
+    margin-top: 15px;
+  }
+  .footer-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .social {
+      margin-top: 15px;
+      text-align: end;
+
+      .nav {
+        // justify-content: flex-end;
+      }
+    }
+  }
+}
