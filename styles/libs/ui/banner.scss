@@ -19,4 +19,25 @@
       font-weight: 300;
     }
   }
+
+  &-image {
+    padding: 15px 50px 0 0;
+    text-align: right;
+    // padding: 15px 0 0 0;
+    // text-align: center;
+  }
+
+  &-button {
+    background-color: var(--surface-0);
+    color: $primary-color;
+    border: 0;
+    border-radius: 15px;
+    height: 50px;
+
+    &:enabled:hover {
+      background-color: var(--surface-0);
+      color: $primary-color;
+      border: 0;
+    }
+  }
 }

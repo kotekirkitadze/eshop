@@ -16,6 +16,7 @@ import { NavComponent } from './shared/nav/nav.component';
 
 import { ProductsModule } from '@appbit/products';
 import { UiModule } from '@appbit/ui';
+import { HttpClientModule } from '@angular/common/http';
 const routes = [
   { path: '', component: HomePageComponent },
   { path: 'products', component: ProductListComponent },
@@ -34,6 +35,7 @@ const routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     RouterModule.forRoot(routes),
     UiModule,
     AccordionModule,
