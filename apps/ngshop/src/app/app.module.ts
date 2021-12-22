@@ -15,6 +15,8 @@ import { UiModule } from '@appbit/ui';
 import { AccordionModule } from 'primeng/accordion';
 import { NavComponent } from './shared/nav/nav.component';
 
+import { ProductsModule } from '@appbit/products';
+
 const routes = [
   { path: '', component: HomePageComponent },
   { path: 'products', component: ProductListComponent },
@@ -36,6 +38,7 @@ const routes = [
     RouterModule.forRoot(routes),
     UiModule,
     AccordionModule,
+    ProductsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
