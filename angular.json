@@ -296,23 +296,23 @@
       "tags": []
     },
     "ui": {
+      "projectType": "library",
       "root": "libs/ui",
       "sourceRoot": "libs/ui/src",
-      "projectType": "library",
+      "prefix": "appbit",
       "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/ui/**/*.ts"]
-          }
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/ui"],
           "options": {
             "jestConfig": "libs/ui/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ui/src/**/*.ts", "libs/ui/src/**/*.html"]
           }
         }
       },

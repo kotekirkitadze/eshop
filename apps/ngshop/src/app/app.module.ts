@@ -11,12 +11,11 @@ import { ProductListComponent } from './pages/product-list/product-list.componen
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 
-import { UiModule } from '@appbit/ui';
 import { AccordionModule } from 'primeng/accordion';
 import { NavComponent } from './shared/nav/nav.component';
 
 import { ProductsModule } from '@appbit/products';
-
+import { UiModule } from '@appbit/ui';
 const routes = [
   { path: '', component: HomePageComponent },
   { path: 'products', component: ProductListComponent },
