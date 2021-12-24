@@ -4,13 +4,24 @@ import { RouterModule, Route } from '@angular/router';
 import { CartService } from './services/cart.service';
 import { CartIconComponent } from './components/cart-icon/cart-icon.component';
 import { BadgeModule } from 'primeng/badge';
+import { CartPageComponent } from './pages/cart-page/cart-page.component';
 
-export const ordersRoutes: Route[] = [];
+import { ButtonModule } from 'primeng/button';
+import { InputNumberModule } from 'primeng/inputnumber';
+
+export const routes: Route[] = [{ path: 'cart', component: CartPageComponent }];
 
 @NgModule({
-  imports: [CommonModule, RouterModule, BadgeModule],
-  declarations: [CartIconComponent],
-  exports: [CartIconComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    BadgeModule,
+    RouterModule.forChild(routes),
+    ButtonModule,
+    InputNumberModule,
+  ],
+  declarations: [CartIconComponent, CartPageComponent],
+  exports: [CartIconComponent, CartPageComponent],
 })
 export class OrdersModule {
   constructor(private cartService: CartService) {

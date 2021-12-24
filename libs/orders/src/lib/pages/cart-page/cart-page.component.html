@@ -1,0 +1,52 @@
+<div class="cart-page">
+  <div class="grid">
+    <div class="col-8">
+      <div>
+        <p-button
+          label="Continue shopping"
+          icon="pi pi-arrow-left"
+          (onClick)="backToShop()"
+        ></p-button>
+      </div>
+      <div>
+        <h4>My Cart: {{ 2 }} Item(s)</h4>
+      </div>
+      <div class="cart-shipping mb-5">Shipping after the payment...</div>
+      <div class="cart-item">
+        <div class="grid p-fluid">
+          <div class="col-2 cart-item-image">
+            <img src="https://wallpaperaccess.com/full/122307.jpg" alt="" />
+          </div>
+          <div class="col-7">
+            <div class="cart-item-name">Product name</div>
+            <div class="cart-item-price">{{ 2 | currency }}</div>
+            <div class="cart-item-remove">
+              <p-button
+                icon="pi pi-trash"
+                (onClick)="deleteCartItem()"
+              ></p-button>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="p-field cart-item-quantity">
+              <p-inputNumber
+                mode="decimal"
+                [showButtons]="true"
+                inputId="quantity"
+                [min]="1"
+                [max]="100"
+                class="mt-2"
+              >
+              </p-inputNumber>
+            </div>
+            <div class="cart-item-subtotal">
+              Subtotal:
+              <span class="cart-item-subtotal-value">{{ 200 | currency }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">Order Summary</div>
+  </div>
+</div>
