@@ -10,7 +10,7 @@ import { LocalstorageService } from '../../services/localstorage.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  loginFormGroup: FormGroup;
+  loginFormGroup!: FormGroup;
   isSubmitted = false;
   authError = false;
   authMessage = 'Email or Password is wrong';

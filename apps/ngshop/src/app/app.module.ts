@@ -15,6 +15,7 @@ import { NavComponent } from './shared/nav/nav.component';
 
 import { ProductsModule } from '@appbit/products';
 import { UiModule } from '@appbit/ui';
+import { OrdersModule } from '@appbit/orders';
 import { HttpClientModule } from '@angular/common/http';
 const routes = [{ path: '', component: HomePageComponent }];
 
@@ -35,6 +36,7 @@ const routes = [{ path: '', component: HomePageComponent }];
     UiModule,
     AccordionModule,
     ProductsModule,
+    OrdersModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

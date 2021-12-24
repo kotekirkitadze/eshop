@@ -25,10 +25,10 @@
                 *ngIf="getLoginForm.email.invalid && isSubmitted"
                 class="p-error"
               >
-                <span *ngIf="getLoginForm.email.errors.required"
+                <span *ngIf="getLoginForm.email.errors?.required"
                   >Email is required</span
                 >
-                <span *ngIf="getLoginForm.email.errors.email">
+                <span *ngIf="getLoginForm.email.errors?.email">
                   Email is invalid
                 </span>
               </small>
@@ -59,7 +59,7 @@
               ></p-button>
             </div>
             <div class="col-12" *ngIf="isSubmitted && authError">
-              <small class="p-error">{{authMessage}}</small>
+              <small class="p-error">{{ authMessage }}</small>
             </div>
           </div>
         </form>
