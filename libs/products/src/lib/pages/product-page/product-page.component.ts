@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartItem, CartService } from '@appbit/orders';
+import { MessageService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
 import { Product } from '../../models/product';
 import { ProductsService } from '../../services/products.service';
@@ -11,11 +13,13 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ProductPageComponent implements OnInit, OnDestroy {
   product: Product = {};
-  quantity = 0;
+  quantity = 1;
   endSubs$: Subject<number> = new Subject<number>();
   constructor(
     private productsService: ProductsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cartService: CartService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -40,5 +44,16 @@ export class ProductPageComponent implements OnInit, OnDestroy {
       });
   }
 
-  addProductToCart() {}
+  addProductToCart() {
+    const cartItem: CartItem = {
+      productId: this.product.id,
+      quantity: this.quantity,
+    };
+    this.cartService.setCartItem(cartItem);
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: `Product is added to the cart`,
+    });
+  }
 }

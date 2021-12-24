@@ -15,6 +15,8 @@ import { ProductPageComponent } from './pages/product-page/product-page.componen
 import { RatingModule } from 'primeng/rating';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { UiModule } from '@appbit/ui';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 const routes: Routes = [
   {
@@ -41,6 +43,7 @@ const routes: Routes = [
     RatingModule,
     InputNumberModule,
     UiModule,
+    ToastModule,
   ],
   declarations: [
     ProductsSearchComponent,
@@ -58,5 +61,6 @@ const routes: Routes = [
     ProductsListComponent,
     ProductPageComponent,
   ],
+  providers: [MessageService],
 })
 export class ProductsModule {}

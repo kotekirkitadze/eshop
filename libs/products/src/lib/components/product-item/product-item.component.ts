@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 import { CartItem, CartService } from '@appbit/orders';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'products-product-item',
   templateUrl: './product-item.component.html',
@@ -9,7 +10,10 @@ import { CartItem, CartService } from '@appbit/orders';
 export class ProductItemComponent implements OnInit {
   @Input() product: Product = {};
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -20,5 +24,10 @@ export class ProductItemComponent implements OnInit {
     };
 
     this.cartService.setCartItem(cartItem);
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: `Product is added to the cart`,
+    });
   }
 }
