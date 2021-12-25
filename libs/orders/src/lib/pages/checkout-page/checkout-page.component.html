@@ -1,0 +1,120 @@
+<div class="checkout-page">
+  <div>
+    <p-button
+      label="Back to cart"
+      icon="pi pi-arrow-left"
+      (onClick)="backToCart()"
+    ></p-button>
+  </div>
+  <div class="grid checkout-form">
+    <div class="col-8">
+      <form [formGroup]="checkoutForm">
+        <div class="p-fluid formgrid grid">
+          <div class="field col-4">
+            <label for="name">Name</label>
+            <input formControlName="name" id="name" type="text" pInputText />
+            <small
+              *ngIf="getCheckoutForm.name.invalid && isSubmitted"
+              class="p-error"
+              >Name is required</small
+            >
+          </div>
+          <div class="field col-4">
+            <label for="email">Email</label>
+            <input formControlName="email" id="email" type="text" pInputText />
+            <small
+              *ngIf="getCheckoutForm.email.invalid && isSubmitted"
+              class="p-error"
+              ><span
+                *ngIf="getCheckoutForm.email.errors?.required && isSubmitted"
+                >Email is required</span
+              ><span *ngIf="getCheckoutForm.email.errors?.email && isSubmitted"
+                >Email is invalid</span
+              ></small
+            >
+          </div>
+          <div class="field col-4">
+            <label for="phone">Phone</label>
+            <p-inputMask
+              mask="999-9999"
+              placeholder="(999) 9999"
+              formControlName="phone"
+            ></p-inputMask>
+          </div>
+        </div>
+        <div class="p-fluid formgrid grid">
+          <div class="field col-4">
+            <label for="street">Street</label> <br />
+            <input
+              id="street"
+              type="text"
+              formControlName="street"
+              pInputText
+            />
+            <small
+              *ngIf="getCheckoutForm.street.invalid && isSubmitted"
+              class="p-error"
+              >Street is required</small
+            >
+          </div>
+          <div class="field col-4">
+            <label for="apartment">Apartment</label> <br />
+            <input
+              id="apartment"
+              type="text"
+              formControlName="apartment"
+              pInputText
+            />
+            <small
+              *ngIf="getCheckoutForm.apartment.invalid && isSubmitted"
+              class="p-error"
+              >Apartment is required</small
+            >
+          </div>
+          <div class="field col-4">
+            <label for="zipcode">Zip Code</label> <br />
+            <input id="zip" type="text" formControlName="zip" pInputText />
+            <small
+              *ngIf="getCheckoutForm.zip.invalid && isSubmitted"
+              class="p-error"
+              >Zip code is required</small
+            >
+          </div>
+          <div class="field col-4">
+            <label for="city">City</label> <br />
+            <input id="city" type="text" formControlName="city" pInputText />
+            <small
+              *ngIf="getCheckoutForm.city.invalid && isSubmitted"
+              class="p-error"
+              >City is required</small
+            >
+          </div>
+          <div class="field col-4">
+            <label for="phone">Country</label> <br />
+            <p-dropdown
+              [options]="countries"
+              formControlName="country"
+              optionLabel="name"
+              optionValue="id"
+              [filter]="true"
+              filterBy="name"
+              [showClear]="true"
+              placeholder="Select a Country"
+            ></p-dropdown>
+            <small
+              *ngIf="getCheckoutForm.country.invalid && isSubmitted"
+              class="p-error"
+              >Country is required</small
+            >
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-4">
+      <orders-order-summary></orders-order-summary>
+      <div class="checkout-button">
+        <p-button label="Place-Order" (onClick)="placeOrder()"></p-button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -28,8 +28,8 @@
               <td>{{ order.dateOrdered | date: 'short' }}</td>
               <td>
                 <p-tag
-                  [value]="orderStatus[order.status].label"
-                  [severity]="orderStatus[order.status].color"
+                  [value]="orderStatus[order?.status]?.label"
+                  [severity]="orderStatus[order?.status]?.color"
                 ></p-tag>
               </td>
               <td>
