@@ -11,7 +11,7 @@ export class OrdersService {
   constructor(private http: HttpClient) {}
 
   private api = `${environment.apiUrl}orders/`;
-
+  private productApiUrl = `${environment.apiUrl}products/`;
   getOrders(): Observable<Order[]> {
     return this.http.get<Order[]>(this.api);
   }
@@ -45,5 +45,9 @@ export class OrdersService {
     return this.http
       .get<number>(`${this.api}get/totalsales`)
       .pipe(map((o: any) => o.totalsales));
+  }
+
+  getProductbyId(productId: string): Observable<any> {
+    return this.http.get<any>(`${this.productApiUrl}${productId}`);
   }
 }

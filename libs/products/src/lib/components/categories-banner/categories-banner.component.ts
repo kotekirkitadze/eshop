@@ -28,7 +28,6 @@ export class CategoriesBannerComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.endSubs$))
       .subscribe((categories: Category[]) => {
         this.categories = categories;
-        console.log(this.categories);
       });
   }
 }

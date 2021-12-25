@@ -63,7 +63,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
     const selectedCategories = this.categories
       .filter((cat: Category) => cat.checked)
       .map((cat: Category) => cat.id) as string[];
-    console.log(selectedCategories);
+
     this._getProducts(selectedCategories);
   }
 }

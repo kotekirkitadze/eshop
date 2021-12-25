@@ -9,21 +9,26 @@
         ></p-button>
       </div>
       <div>
-        <h4>My Cart: {{ 2 }} Item(s)</h4>
+        <h4>My Cart: {{ cartCount }} Item(s)</h4>
       </div>
       <div class="cart-shipping mb-5">Shipping after the payment...</div>
-      <div class="cart-item">
+      <div class="cart-item mb-5" *ngFor="let cartItem of cartItemsDetailed">
         <div class="grid p-fluid">
           <div class="col-2 cart-item-image">
-            <img src="https://wallpaperaccess.com/full/122307.jpg" alt="" />
+            <img
+              [src]="cartItem.product.image"
+              [attr.alt]="cartItem.product.name"
+            />
           </div>
           <div class="col-7">
-            <div class="cart-item-name">Product name</div>
-            <div class="cart-item-price">{{ 2 | currency }}</div>
+            <div class="cart-item-name">{{ cartItem.product.name }}</div>
+            <div class="cart-item-price">
+              {{ cartItem.product.price | currency }}
+            </div>
             <div class="cart-item-remove">
               <p-button
                 icon="pi pi-trash"
-                (onClick)="deleteCartItem()"
+                (onClick)="deleteCartItem(cartItem)"
               ></p-button>
             </div>
           </div>
@@ -32,7 +37,7 @@
               <p-inputNumber
                 mode="decimal"
                 [showButtons]="true"
-                inputId="quantity"
+                [inputId]="cartItem.product.id"
                 [min]="1"
                 [max]="100"
                 class="mt-2"
@@ -41,7 +46,10 @@
             </div>
             <div class="cart-item-subtotal">
               Subtotal:
-              <span class="cart-item-subtotal-value">{{ 200 | currency }}</span>
+              <span class="cart-item-subtotal-value">{{
+                (cartItem.product.price ?? 0) * (cartItem.quantity ?? 0)
+                  | currency
+              }}</span>
             </div>
           </div>
         </div>

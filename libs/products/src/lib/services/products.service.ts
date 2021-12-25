@@ -17,7 +17,6 @@ export class ProductsService {
     let params = new HttpParams();
     if (categoriesFilter) {
       params = params.append('categories', categoriesFilter.join(','));
-      console.log(params);
     }
     return this.http.get<Category[]>(this.api, { params });
   }
