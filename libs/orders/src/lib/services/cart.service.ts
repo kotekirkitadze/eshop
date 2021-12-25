@@ -33,7 +33,7 @@ export class CartService {
     return cart;
   }
 
-  setCartItem(cartItem: CartItem): Cart {
+  setCartItem(cartItem: CartItem, updateCartItem?: boolean): Cart {
     let cart: Cart = this.getCart();
 
     const existingCart = cart.items?.find(
@@ -43,7 +43,11 @@ export class CartService {
       cart.items?.map((item) => {
         if (item.productId == existingCart.productId) {
           if (item.quantity && cartItem?.quantity) {
-            item.quantity = item.quantity + cartItem.quantity;
+            if (updateCartItem) {
+              item.quantity = cartItem.quantity;
+            } else {
+              item.quantity = item.quantity + cartItem.quantity;
+            }
           }
         }
       });

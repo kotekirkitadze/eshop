@@ -8,6 +8,8 @@ import { CartPageComponent } from './pages/cart-page/cart-page.component';
 
 import { ButtonModule } from 'primeng/button';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { FormsModule } from '@angular/forms';
 
 export const routes: Route[] = [{ path: 'cart', component: CartPageComponent }];
 
@@ -19,9 +21,10 @@ export const routes: Route[] = [{ path: 'cart', component: CartPageComponent }];
     RouterModule.forChild(routes),
     ButtonModule,
     InputNumberModule,
+    FormsModule,
   ],
-  declarations: [CartIconComponent, CartPageComponent],
-  exports: [CartIconComponent, CartPageComponent],
+  declarations: [CartIconComponent, CartPageComponent, OrderSummaryComponent],
+  exports: [CartIconComponent, CartPageComponent, OrderSummaryComponent],
 })
 export class OrdersModule {
   constructor(private cartService: CartService) {
