@@ -10,7 +10,6 @@ export class GalleryComponent implements OnInit {
 
   selectedImageUrl =
     'https://i.pinimg.com/564x/9d/bb/7b/9dbb7b1fee6b77fcfd20cb2b9023701f.jpg';
-  constructor() {}
 
   ngOnInit(): void {
     if (this.images != undefined) {

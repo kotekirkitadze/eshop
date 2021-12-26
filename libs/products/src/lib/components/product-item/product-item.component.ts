@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Product } from '../../models/product';
 import { CartItem, CartService } from '@appbit/orders';
 import { MessageService } from 'primeng/api';
@@ -7,15 +7,13 @@ import { MessageService } from 'primeng/api';
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.scss'],
 })
-export class ProductItemComponent implements OnInit {
+export class ProductItemComponent {
   @Input() product: Product = {};
 
   constructor(
     private cartService: CartService,
     private messageService: MessageService
   ) {}
-
-  ngOnInit(): void {}
 
   addProductToCart() {
     const cartItem: CartItem = {

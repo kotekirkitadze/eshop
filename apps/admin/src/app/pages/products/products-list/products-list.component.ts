@@ -4,7 +4,7 @@ import { ProductsService, Product } from '@appbit/products';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
 @Component({
-  selector: 'appbit-products-list',
+  selector: 'admin-products-list',
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss'],
 })

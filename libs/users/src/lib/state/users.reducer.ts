@@ -27,7 +27,7 @@ const usersReducer = createReducer(
     user: action.user,
     isAuthenticated: true,
   })),
-  on(UsersActions.buildUserSessionFailure, (state, action) => ({
+  on(UsersActions.buildUserSessionFailure, (state) => ({
     ...state,
     user: null,
     isAuthenticated: false,

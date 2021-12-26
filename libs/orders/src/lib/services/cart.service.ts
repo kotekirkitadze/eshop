@@ -10,8 +10,6 @@ export const CART_KEY = 'cart';
 export class CartService {
   cart$: BehaviorSubject<Cart> = new BehaviorSubject<Cart>(this.getCart());
 
-  constructor() {}
-
   initCartLocalStorage(): void {
     const cart = localStorage.getItem(CART_KEY);
     if (!cart) {
@@ -43,7 +41,7 @@ export class CartService {
   }
 
   setCartItem(cartItem: CartItem, updateCartItem?: boolean): Cart {
-    let cart: Cart = this.getCart();
+    const cart: Cart = this.getCart();
 
     const existingCart = cart.items?.find(
       (e) => e.productId == cartItem.productId

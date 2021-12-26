@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot,
-  UrlTree,
-} from '@angular/router';
+import { CanActivate, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LocalstorageService } from './localstorage.service';
 
@@ -18,10 +12,9 @@ export class AuthGuard implements CanActivate {
     private localStorageService: LocalstorageService
   ) {}
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ):
+  // route: ActivatedRouteSnapshot,
+  // state: RouterStateSnapshot
+  canActivate():
     | boolean
     | UrlTree
     | Observable<boolean | UrlTree>

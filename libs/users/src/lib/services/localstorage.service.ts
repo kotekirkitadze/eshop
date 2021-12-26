@@ -6,8 +6,6 @@ const TOKEN = 'jwtToken';
   providedIn: 'root',
 })
 export class LocalstorageService {
-  constructor() {}
-
   setToken(data: any) {
     localStorage.setItem(TOKEN, data);
   }

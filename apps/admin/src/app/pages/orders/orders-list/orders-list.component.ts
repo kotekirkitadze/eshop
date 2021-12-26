@@ -48,7 +48,7 @@ export class OrdersListComponent implements OnInit, OnDestroy {
           .deleteOrder(orderId)
           .pipe(takeUntil(this.endSubs$))
           .subscribe(
-            (order: Order) => {
+            () => {
               this.messageService.add({
                 severity: 'success',
                 summary: 'Success',
