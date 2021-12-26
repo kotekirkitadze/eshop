@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as countriesLib from 'i18n-iso-countries';
@@ -8,6 +8,8 @@ import { OrderItem } from '../../models/order-item';
 import { CartService } from '../../services/cart.service';
 import { OrdersService } from '../../services/order.service';
 import { ORDER_STATUS } from '../../order.constants';
+import { User, UsersService } from '@appbit/users';
+import { Subject, takeUntil } from 'rxjs';
 
 declare const require: any;
 @Component({
@@ -15,23 +17,48 @@ declare const require: any;
   templateUrl: './checkout-page.component.html',
   styleUrls: ['./checkout-page.component.scss'],
 })
-export class CheckoutPageComponent implements OnInit {
+export class CheckoutPageComponent implements OnInit, OnDestroy {
   checkoutForm: FormGroup = new FormGroup({});
   isSubmitted = false;
   orderItems: OrderItem[] = [];
-  userId = '61c78ec0dd3033fc769c2d52';
+  userId = '';
   countries: any[] = [];
+  endSubs$: Subject<number> = new Subject<number>();
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private cartService: CartService,
-    private ordersService: OrdersService
+    private ordersService: OrdersService,
+    private usersService: UsersService
   ) {}
 
   ngOnInit(): void {
     this._initForm();
+    this._autoFillUserData();
     this._getCartItems();
     this._getCountries();
+  }
+  ngOnDestroy(): void {
+    this.endSubs$.next(1);
+    this.endSubs$.complete();
+  }
+
+  private _autoFillUserData() {
+    this.usersService
+      .observeCurrentUser()
+      .pipe(takeUntil(this.endSubs$))
+      .subscribe((user: User | null) => {
+        console.log('user', user?.id);
+        this.userId = user?.id ?? '';
+        this.getCheckoutForm.name.setValue(user?.name);
+        this.getCheckoutForm.email.setValue(user?.email);
+        this.getCheckoutForm.phone.setValue(user?.phone);
+        this.getCheckoutForm.city.setValue(user?.city);
+        this.getCheckoutForm.country.setValue(user?.country);
+        this.getCheckoutForm.zip.setValue(user?.zip);
+        this.getCheckoutForm.apartment.setValue(user?.apartment);
+        this.getCheckoutForm.street.setValue(user?.street);
+      });
   }
 
   private _getCartItems() {

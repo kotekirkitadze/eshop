@@ -40,6 +40,15 @@ export class UsersService {
   }
 
   initAppSession() {
+    console.log('Building session started');
     this.usersFacade.buildUserSession();
+  }
+
+  observeCurrentUser() {
+    return this.usersFacade.currentUser$;
+  }
+
+  isCurrentUserAuthenticated() {
+    return this.usersFacade.isAuthenticated$;
   }
 }

@@ -16,10 +16,13 @@ import { NavComponent } from './shared/nav/nav.component';
 import { ProductsModule } from '@appbit/products';
 import { UiModule } from '@appbit/ui';
 import { OrdersModule } from '@appbit/orders';
-import { HttpClientModule } from '@angular/common/http';
-import { UsersModule, UsersService } from '@appbit/users';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor, UsersModule, UsersService } from '@appbit/users';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '@env/environment';
+
 const routes = [{ path: '', component: HomePageComponent }];
 
 @NgModule({
@@ -43,14 +46,23 @@ const routes = [{ path: '', component: HomePageComponent }];
     ProductsModule,
     OrdersModule,
     UsersModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+    }),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule implements OnInit {
-  constructor(private usersService: UsersService) {}
-
-  ngOnInit(): void {
+export class AppModule {
+  constructor(private usersService: UsersService) {
     this.usersService.initAppSession();
   }
+
+  // ngOnInit(): void {
+  //   this.usersService.initAppSession();
+  // }
 }

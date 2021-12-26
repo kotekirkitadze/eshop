@@ -26,6 +26,8 @@ import { UXModule } from './UX-lib.module';
 
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { ConfirmationService } from 'primeng/api';
     AppRoutingModule,
     UsersModule,
     UXModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
   ],
   providers: [
     MessageService,
