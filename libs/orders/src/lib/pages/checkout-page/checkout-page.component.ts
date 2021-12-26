@@ -9,6 +9,8 @@ import { OrdersService } from '../../services/order.service';
 import { User, UsersService } from '@appbit/users';
 import { Subject, takeUntil } from 'rxjs';
 import { StripeService } from 'ngx-stripe';
+import { ORDER_STATUS } from '../../order.constants';
+import { Order } from '../../models/order';
 
 declare const require: any;
 @Component({
@@ -76,6 +78,22 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     if (this.checkoutForm.invalid) {
       return;
     }
+
+    const order: Order = {
+      orderItems: this.orderItems,
+      shippingAddress1: this.getCheckoutForm.street.value,
+      shippingAddress2: this.getCheckoutForm.apartment.value,
+      city: this.getCheckoutForm.city.value,
+      zip: this.getCheckoutForm.zip.value,
+      country: this.getCheckoutForm.country.value,
+      phone: this.getCheckoutForm.phone.value,
+      status: +Object.keys(ORDER_STATUS)[0],
+      user: this.userId,
+      dateOrdered: `${Date.now()}`,
+    };
+
+    this.ordersService.cacheOrderData(order);
+
     this.ordersService
       .createCheckoutSession(this.orderItems)
       .subscribe((error) => {
@@ -83,19 +101,6 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
           console.log('Error in redirecting to the payment', error);
         }
       });
-
-    // const order: Order = {
-    //   orderItems: this.orderItems,
-    //   shippingAddress1: this.getCheckoutForm.street.value,
-    //   shippingAddress2: this.getCheckoutForm.apartment.value,
-    //   city: this.getCheckoutForm.city.value,
-    //   zip: this.getCheckoutForm.zip.value,
-    //   country: this.getCheckoutForm.country.value,
-    //   phone: this.getCheckoutForm.phone.value,
-    //   status: +Object.keys(ORDER_STATUS)[0],
-    //   user: this.userId,
-    //   dateOrdered: `${Date.now()}`,
-    // };
 
     // this.ordersService.createOrder(order).subscribe(
     //   () => {
