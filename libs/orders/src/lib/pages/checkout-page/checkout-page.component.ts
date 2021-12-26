@@ -3,13 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as countriesLib from 'i18n-iso-countries';
 import { Cart, CartItem } from '../../models/cart';
-import { Order } from '../../models/order';
 import { OrderItem } from '../../models/order-item';
 import { CartService } from '../../services/cart.service';
 import { OrdersService } from '../../services/order.service';
-import { ORDER_STATUS } from '../../order.constants';
 import { User, UsersService } from '@appbit/users';
 import { Subject, takeUntil } from 'rxjs';
+import { StripeService } from 'ngx-stripe';
 
 declare const require: any;
 @Component({
@@ -29,7 +28,8 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private cartService: CartService,
     private ordersService: OrdersService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private stripeService: StripeService
   ) {}
 
   ngOnInit(): void {
@@ -76,29 +76,36 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     if (this.checkoutForm.invalid) {
       return;
     }
+    this.ordersService
+      .createCheckoutSession(this.orderItems)
+      .subscribe((error) => {
+        if (error) {
+          console.log('Error in redirecting to the payment', error);
+        }
+      });
 
-    const order: Order = {
-      orderItems: this.orderItems,
-      shippingAddress1: this.getCheckoutForm.street.value,
-      shippingAddress2: this.getCheckoutForm.apartment.value,
-      city: this.getCheckoutForm.city.value,
-      zip: this.getCheckoutForm.zip.value,
-      country: this.getCheckoutForm.country.value,
-      phone: this.getCheckoutForm.phone.value,
-      status: +Object.keys(ORDER_STATUS)[0],
-      user: this.userId,
-      dateOrdered: `${Date.now()}`,
-    };
+    // const order: Order = {
+    //   orderItems: this.orderItems,
+    //   shippingAddress1: this.getCheckoutForm.street.value,
+    //   shippingAddress2: this.getCheckoutForm.apartment.value,
+    //   city: this.getCheckoutForm.city.value,
+    //   zip: this.getCheckoutForm.zip.value,
+    //   country: this.getCheckoutForm.country.value,
+    //   phone: this.getCheckoutForm.phone.value,
+    //   status: +Object.keys(ORDER_STATUS)[0],
+    //   user: this.userId,
+    //   dateOrdered: `${Date.now()}`,
+    // };
 
-    this.ordersService.createOrder(order).subscribe(
-      () => {
-        this.router.navigate(['/success']);
-        this.cartService.emptyCart();
-      },
-      () => {
-        //maybe some error to show to the user
-      }
-    );
+    // this.ordersService.createOrder(order).subscribe(
+    //   () => {
+    //     this.router.navigate(['/success']);
+    //     this.cartService.emptyCart();
+    //   },
+    //   () => {
+    //     //maybe some error to show to the user
+    //   }
+    // );
   }
 
   private _getCountries() {

@@ -75,6 +75,7 @@ export const routes: Route[] = [
     CheckoutPageComponent,
     ThankYouComponent,
   ],
+  providers: [],
 })
 export class OrdersModule {
   constructor(private cartService: CartService) {

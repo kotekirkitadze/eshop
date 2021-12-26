@@ -22,6 +22,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '@env/environment';
+import { NgxStripeModule } from 'ngx-stripe';
 
 const routes = [{ path: '', component: HomePageComponent }];
 
@@ -51,6 +52,9 @@ const routes = [{ path: '', component: HomePageComponent }];
       logOnly: environment.production, // Restrict extension to log-only mode
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
+    NgxStripeModule.forRoot(
+      'pk_test_51KAzSoFWBvgcccXyPMqB4Wzt8fbMh1vLTEZCjlmspUek7iomQZ5QTQzP6QSJkIZXFq8ll2nYkxzdYUFcxEbotad900air6iV9W'
+    ),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
