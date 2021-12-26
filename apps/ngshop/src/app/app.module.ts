@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -17,6 +17,9 @@ import { ProductsModule } from '@appbit/products';
 import { UiModule } from '@appbit/ui';
 import { OrdersModule } from '@appbit/orders';
 import { HttpClientModule } from '@angular/common/http';
+import { UsersModule, UsersService } from '@appbit/users';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 const routes = [{ path: '', component: HomePageComponent }];
 
 @NgModule({
@@ -33,12 +36,21 @@ const routes = [{ path: '', component: HomePageComponent }];
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     UiModule,
     AccordionModule,
     ProductsModule,
     OrdersModule,
+    UsersModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule implements OnInit {
+  constructor(private usersService: UsersService) {}
+
+  ngOnInit(): void {
+    this.usersService.initAppSession();
+  }
+}

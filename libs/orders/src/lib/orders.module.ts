@@ -22,6 +22,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TagModule } from 'primeng/tag';
 import { InputMaskModule } from 'primeng/inputmask';
 import { ThankYouComponent } from './pages/thank-you/thank-you.component';
+import { AuthGuard } from '@appbit/users';
 
 const UX_COMPONENTS = [
   ButtonModule,
@@ -40,7 +41,11 @@ const UX_COMPONENTS = [
 
 export const routes: Route[] = [
   { path: 'cart', component: CartPageComponent },
-  { path: 'checkout', component: CheckoutPageComponent },
+  {
+    path: 'checkout',
+    canActivate: [AuthGuard],
+    component: CheckoutPageComponent,
+  },
   { path: 'success', component: ThankYouComponent },
 ];
 

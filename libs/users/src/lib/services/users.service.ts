@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { environment } from '@env/environment';
 import { User } from '../models/user';
+import { UsersFacade } from '../state/users.facade';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private usersFacade: UsersFacade) {}
 
   private api = `${environment.apiUrl}users/`;
 
@@ -36,5 +37,9 @@ export class UsersService {
     return this.http
       .get<number>(`${this.api}get/count`)
       .pipe(map((o: any) => o.userCount));
+  }
+
+  initAppSession() {
+    this.usersFacade.buildUserSession();
   }
 }
