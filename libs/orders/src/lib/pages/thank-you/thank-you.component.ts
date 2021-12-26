@@ -22,13 +22,13 @@ export class ThankYouComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const orderData = this.ordersService.getCachedOrderData();
-    console.log(orderData);
 
     this.ordersService
       .createOrder(orderData)
       .pipe(takeUntil(this.endSubs$))
       .subscribe(
         () => {
+          console.log('hellohi');
           this.cartService.emptyCart();
           this.ordersService.removeCachedOrderData();
         },

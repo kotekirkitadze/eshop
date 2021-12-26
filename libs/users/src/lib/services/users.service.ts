@@ -40,7 +40,6 @@ export class UsersService {
   }
 
   initAppSession() {
-    console.log('Building session started');
     this.usersFacade.buildUserSession();
   }
 

@@ -28,6 +28,7 @@ import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { NgxStripeModule } from 'ngx-stripe';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,9 @@ import { EffectsModule } from '@ngrx/effects';
     UXModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
+    NgxStripeModule.forRoot(
+      'pk_test_51KAzSoFWBvgcccXyPMqB4Wzt8fbMh1vLTEZCjlmspUek7iomQZ5QTQzP6QSJkIZXFq8ll2nYkxzdYUFcxEbotad900air6iV9W'
+    ),
   ],
   providers: [
     MessageService,

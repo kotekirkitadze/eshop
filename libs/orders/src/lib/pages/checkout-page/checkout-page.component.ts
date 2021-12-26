@@ -50,7 +50,6 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       .observeCurrentUser()
       .pipe(takeUntil(this.endSubs$))
       .subscribe((user: User | null) => {
-        console.log('user', user?.id);
         this.userId = user?.id ?? '';
         this.getCheckoutForm.name.setValue(user?.name);
         this.getCheckoutForm.email.setValue(user?.email);
