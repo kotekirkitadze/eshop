@@ -28,7 +28,6 @@ export class ThankYouComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.endSubs$))
       .subscribe(
         () => {
-          console.log('hellohi');
           this.cartService.emptyCart();
           this.ordersService.removeCachedOrderData();
         },
