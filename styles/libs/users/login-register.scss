@@ -2,14 +2,29 @@
   background-image: linear-gradient(235deg, #565867, #191a25);
   height: 100vh;
   &-panel {
+    display: inline-block;
+    margin-top: 100px;
+    margin-left: calc(50% - 325px);
     width: 650px;
     height: 525px;
     background-color: var(--surface-a);
-    position: absolute;
-    left: calc(50% - 325px);
-    top: calc(50% - 260px);
+    // position: absolute;
+    // left: calc(50% - 325px);
+    // top: calc(50% - 290px);
+
     .full-btn {
       width: 100%;
     }
+  }
+}
+
+.signUpBtn {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  &:hover {
+    color: rgb(19, 88, 216);
   }
 }

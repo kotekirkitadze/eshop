@@ -77,7 +77,6 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     if (this.checkoutForm.invalid) {
       return;
     }
-
     const order: Order = {
       orderItems: this.orderItems,
       shippingAddress1: this.getCheckoutForm.street.value,
@@ -101,18 +100,18 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.ordersService
-      .createOrder(order)
-      .pipe(takeUntil(this.endSubs$))
-      .subscribe(
-        () => {
-          this.cartService.emptyCart();
-          this.ordersService.removeCachedOrderData();
-        },
-        () => {
-          //maybe some error to show to the user
-        }
-      );
+    // this.ordersService
+    //   .createOrder(order)
+    //   .pipe(takeUntil(this.endSubs$))
+    //   .subscribe(
+    //     () => {
+    //       this.cartService.emptyCart();
+    //       this.ordersService.removeCachedOrderData();
+    //     },
+    //     () => {
+    //       //maybe some error to show to the user
+    //     }
+    //   );
 
     // this.ordersService.createOrder(order).subscribe(
     //   () => {

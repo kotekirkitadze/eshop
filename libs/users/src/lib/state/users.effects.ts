@@ -9,9 +9,33 @@ import * as UsersActions from './users.actions';
 
 @Injectable()
 export class UsersEffects {
-  buildUserSessio$ = createEffect(() =>
+  buildUserSession$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UsersActions.buildUserSession),
+      concatMap(() => {
+        if (!this.localStorageService.isValidToken()) {
+          const userId = this.localStorageService.getUserIdFromToke();
+
+          if (userId) {
+            return this.usersService.getUserById(userId).pipe(
+              map((user) =>
+                UsersActions.buildUserSessionSuccess({ user: user })
+              ),
+              catchError(() => of(UsersActions.buildUserSessionFailure()))
+            );
+          } else {
+            return of(UsersActions.buildUserSessionFailure());
+          }
+        } else {
+          return of(UsersActions.buildUserSessionFailure());
+        }
+      })
+    )
+  );
+
+  buildUsersChangeSession$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UsersActions.buildUserChangeSession),
       concatMap(() => {
         if (!this.localStorageService.isValidToken()) {
           const userId = this.localStorageService.getUserIdFromToke();

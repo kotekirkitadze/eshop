@@ -22,6 +22,15 @@ export class AuthService {
     return this.http.post(`${this.api}login`, { email, password });
   }
 
+  signUp({ email = '', name = '', password = '', phone = '' }) {
+    return this.http.post(`${this.api}register`, {
+      email,
+      name,
+      password,
+      phone,
+    });
+  }
+
   logout() {
     this.localStorageService.removeToken();
     this.router.navigate(['/login']);

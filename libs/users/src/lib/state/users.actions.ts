@@ -3,6 +3,10 @@ import { User } from '../models/user';
 
 export const buildUserSession = createAction('[Users] Build User Session');
 
+export const buildUserChangeSession = createAction(
+  '[Users] Build UserChange Session'
+);
+
 export const buildUserSessionSuccess = createAction(
   '[Users] Build Users Success',
   props<{ user: User }>()
