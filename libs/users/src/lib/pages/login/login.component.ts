@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { LocalstorageService } from '../../services/localstorage.service';
+import { UsersService } from '../../services/users.service';
 @Component({
   selector: 'users-login',
   templateUrl: './login.component.html',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private localStorageService: LocalstorageService,
-    private router: Router
+    private router: Router,
+    private usersService: UsersService
   ) {}
 
   ngOnInit(): void {
@@ -49,7 +51,9 @@ export class LoginComponent implements OnInit {
     this.authService.login(loginData.email, loginData.password).subscribe(
       (user) => {
         this.authError = false;
+
         this.localStorageService.setToken(user.token);
+        this.usersService.initUserChangeSession();
         this.router.navigate(['/']);
       },
       (error: HttpErrorResponse) => {

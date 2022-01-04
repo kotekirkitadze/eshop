@@ -20,11 +20,13 @@
 @import './apps/shop/shared/header.scss';
 @import './apps/shop/shared/footer.scss';
 @import './apps/shop/shared/nav.scss';
+@import './apps/shop/shared/profile-nav.scss';
 
 //libs
 @import './libs/ui/ui.scss';
 @import './libs/products/products.scss';
 @import './libs/orders/orders.scss';
+@import './libs/users/users.scss';
 
 .container {
   width: 1200px;

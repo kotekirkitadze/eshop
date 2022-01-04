@@ -43,6 +43,10 @@ export class UsersService {
     this.usersFacade.buildUserSession();
   }
 
+  initUserChangeSession() {
+    this.usersFacade.buildUserChangeSession();
+  }
+
   observeCurrentUser() {
     return this.usersFacade.currentUser$;
   }

@@ -23,6 +23,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '@env/environment';
 import { NgxStripeModule } from 'ngx-stripe';
+import { ProfileNavComponent } from './shared/profile-nav/profile-nav.component';
 
 const routes = [{ path: '', component: HomePageComponent }];
 
@@ -34,6 +35,7 @@ const routes = [{ path: '', component: HomePageComponent }];
     HeaderComponent,
     FooterComponent,
     NavComponent,
+    ProfileNavComponent,
   ],
   imports: [
     BrowserModule,

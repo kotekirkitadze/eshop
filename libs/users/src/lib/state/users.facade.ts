@@ -14,4 +14,8 @@ export class UsersFacade {
   buildUserSession() {
     this.store.dispatch(UsersActions.buildUserSession());
   }
+
+  buildUserChangeSession() {
+    this.store.dispatch(UsersActions.buildUserChangeSession());
+  }
 }
