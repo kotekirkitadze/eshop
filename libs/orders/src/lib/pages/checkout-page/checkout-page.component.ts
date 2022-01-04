@@ -101,6 +101,19 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
         }
       });
 
+    this.ordersService
+      .createOrder(order)
+      .pipe(takeUntil(this.endSubs$))
+      .subscribe(
+        () => {
+          this.cartService.emptyCart();
+          this.ordersService.removeCachedOrderData();
+        },
+        () => {
+          //maybe some error to show to the user
+        }
+      );
+
     // this.ordersService.createOrder(order).subscribe(
     //   () => {
     //     this.router.navigate(['/success']);

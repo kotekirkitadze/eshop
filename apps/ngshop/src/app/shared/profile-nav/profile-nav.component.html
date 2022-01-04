@@ -1,0 +1,20 @@
+<div class="action" (click)="toggleMenu()">
+  <div class="profile">
+    <i class="pi pi-user p-text-secondary" style="font-size: 1.5rem"></i>
+  </div>
+  <div class="menu active" *ngIf="isActive">
+    <!-- <h3>User menu <br /><span>Website Designer</span></h3> -->
+    <h3>User menu</h3>
+
+    <ul>
+      <li *ngIf="isAuth">
+        <i class="pi pi-user"></i>
+        <a href="#">My profile</a>
+      </li>
+      <li class="logOut" *ngIf="isAuth">
+        <i class="pi pi-sign-out"></i>
+        <span (click)="logOut()">Log out</span>
+      </li>
+    </ul>
+  </div>
+</div>
