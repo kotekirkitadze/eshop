@@ -23,6 +23,7 @@ import { TagModule } from 'primeng/tag';
 import { InputMaskModule } from 'primeng/inputmask';
 import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 import { SimpleAuthGuard } from '@appbit/users';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
 
 const UX_COMPONENTS = [
   ButtonModule,
@@ -46,6 +47,7 @@ export const routes: Route[] = [
     canActivate: [SimpleAuthGuard],
     component: CheckoutPageComponent,
   },
+  { path: 'history/:id', component: OrderHistoryComponent },
   { path: 'success', component: ThankYouComponent },
 ];
 
@@ -67,6 +69,7 @@ export const routes: Route[] = [
     OrderSummaryComponent,
     CheckoutPageComponent,
     ThankYouComponent,
+    OrderHistoryComponent,
   ],
   exports: [
     CartIconComponent,
@@ -74,6 +77,7 @@ export const routes: Route[] = [
     OrderSummaryComponent,
     CheckoutPageComponent,
     ThankYouComponent,
+    OrderHistoryComponent,
   ],
   providers: [],
 })

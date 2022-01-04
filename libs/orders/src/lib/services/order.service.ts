@@ -65,6 +65,10 @@ export class OrdersService {
       );
   }
 
+  getOrdersByUserId(userId: string): Observable<any> {
+    return this.http.get<any>(`${this.api}listOrders/${userId}`);
+  }
+
   cacheOrderData(order: Order) {
     localStorage.setItem('orderData', JSON.stringify(order));
   }

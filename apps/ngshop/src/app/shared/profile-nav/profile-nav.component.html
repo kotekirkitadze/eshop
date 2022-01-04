@@ -6,12 +6,16 @@
     <!-- <h3>User menu <br /><span>Website Designer</span></h3> -->
     <h3>User menu</h3>
 
-    <ul>
-      <li *ngIf="isAuth">
+    <ul *ngIf="isAuth">
+      <li>
         <i class="pi pi-user"></i>
-        <a href="#">My profile</a>
+        <a>My profile</a>
       </li>
-      <li class="logOut" *ngIf="isAuth">
+      <li>
+        <i class="pi pi-history"></i>
+        <a (click)="toOrderHistory()">Order history</a>
+      </li>
+      <li class="logOut">
         <i class="pi pi-sign-out"></i>
         <span (click)="logOut()">Log out</span>
       </li>
