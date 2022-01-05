@@ -44,4 +44,5 @@ export class HistoryDetailComponent implements OnInit, OnDestroy {
   backToLists(): void {
     this.location.back();
   }
+  generateInvoice(): void {}
 }

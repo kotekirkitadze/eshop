@@ -48,12 +48,16 @@ export class ProfileNavComponent implements OnInit, OnDestroy {
     this.isActive = !this.isActive;
   }
 
-  toggleMenu() {
+  toggleMenu(): void {
     this.isAuth = this.localStorageService.getToken();
     if (!this.isAuth) {
       this.router.navigate(['login']);
       return;
     }
     this.isActive = !this.isActive;
+  }
+
+  goProfile(): void {
+    this.router.navigate([`profile/${this.currentUserId}`]);
   }
 }

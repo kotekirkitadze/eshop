@@ -3,10 +3,11 @@
     header="Order Detail"
     subheader="You can see your order's detail here"
   >
+    <p-button (onClick)="backToLists()" label="Back to order lists"></p-button>
     <p-button
-      (onClick)="backToLists()"
-      label="Back to order lists"
-      routerLink="/"
+      class="ml-2"
+      (onClick)="generateInvoice()"
+      label="Download Invoice"
     ></p-button>
   </p-card>
   <p-fieldset legend="Order Details" [toggleable]="true" styleClass="mb-4 mt-2">
