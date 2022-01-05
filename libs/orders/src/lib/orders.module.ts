@@ -25,17 +25,22 @@ import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 import { SimpleAuthGuard } from '@appbit/users';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 
+import { CardModule } from 'primeng/card';
+import { TableModule } from 'primeng/table';
+import { HistoryDetailComponent } from './components/history-detail/history-detail.component';
+import { FieldsetModule } from 'primeng/fieldset';
+
 const UX_COMPONENTS = [
   ButtonModule,
-
+  FieldsetModule,
   InputTextModule,
-
+  CardModule,
   ColorPickerModule,
   InputNumberModule,
   InputTextareaModule,
   InputSwitchModule,
   DropdownModule,
-
+  TableModule,
   TagModule,
   InputMaskModule,
 ];
@@ -48,6 +53,7 @@ export const routes: Route[] = [
     component: CheckoutPageComponent,
   },
   { path: 'history/:id', component: OrderHistoryComponent },
+  { path: 'history/details/:id', component: HistoryDetailComponent },
   { path: 'success', component: ThankYouComponent },
 ];
 
@@ -70,6 +76,7 @@ export const routes: Route[] = [
     CheckoutPageComponent,
     ThankYouComponent,
     OrderHistoryComponent,
+    HistoryDetailComponent,
   ],
   exports: [
     CartIconComponent,
@@ -78,6 +85,7 @@ export const routes: Route[] = [
     CheckoutPageComponent,
     ThankYouComponent,
     OrderHistoryComponent,
+    HistoryDetailComponent,
   ],
   providers: [],
 })
