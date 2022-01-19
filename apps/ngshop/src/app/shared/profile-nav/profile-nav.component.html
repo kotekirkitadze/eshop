@@ -1,8 +1,13 @@
 <div class="action" (click)="toggleMenu()">
   <div class="profile">
-    <img class="profile-image" *ngIf="userImage" [src]="userImage" alt="" />
+    <img
+      class="profile-image"
+      *ngIf="currentUserId && userImage"
+      [src]="userImage"
+      alt=""
+    />
     <i
-      *ngIf="!userImage"
+      *ngIf="!currentUserId || !userImage"
       class="pi pi-user p-text-secondary"
       style="font-size: 1.5rem"
     ></i>

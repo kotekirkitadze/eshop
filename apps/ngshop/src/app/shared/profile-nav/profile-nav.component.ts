@@ -42,6 +42,8 @@ export class ProfileNavComponent implements OnInit, OnDestroy {
         }
         if (user?.image) {
           this.userImage = user.image;
+        } else {
+          this.userImage = '';
         }
       });
 
@@ -63,6 +65,7 @@ export class ProfileNavComponent implements OnInit, OnDestroy {
   logOut() {
     this.authService.logOut();
     this.isActive = !this.isActive;
+    this.currentUserId = '';
   }
 
   toggleMenu(): void {
