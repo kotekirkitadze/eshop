@@ -1,14 +1,24 @@
 <div class="action" (click)="toggleMenu()">
   <div class="profile">
-    <i class="pi pi-user p-text-secondary" style="font-size: 1.5rem"></i>
+    <img class="profile-image" *ngIf="userImage" [src]="userImage" alt="" />
+    <i
+      *ngIf="!userImage"
+      class="pi pi-user p-text-secondary"
+      style="font-size: 1.5rem"
+    ></i>
   </div>
   <div class="menu active" *ngIf="isActive">
     <!-- <h3>User menu <br /><span>Website Designer</span></h3> -->
-    <h3>User menu</h3>
+    <h3>{{ userName }}</h3>
 
     <ul *ngIf="isAuth">
       <li>
-        <i class="pi pi-user"></i>
+        <img class="profile-image" *ngIf="userImage" [src]="userImage" alt="" />
+        <i
+          *ngIf="!userImage"
+          class="pi pi-user p-text-secondary"
+          style="font-size: 1.5rem"
+        ></i>
         <a (click)="goProfile()">My profile</a>
       </li>
       <li>

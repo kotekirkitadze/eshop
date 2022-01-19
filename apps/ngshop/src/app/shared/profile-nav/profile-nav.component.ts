@@ -1,6 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService, User, UsersService } from '@appbit/users';
+import {
+  AuthService,
+  EventBusService,
+  User,
+  UsersService,
+} from '@appbit/users';
 import { LocalstorageService } from 'libs/users/src/lib/services/localstorage.service';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -14,12 +19,14 @@ export class ProfileNavComponent implements OnInit, OnDestroy {
   isActive = false;
   currentUserId = '';
   isAuth = '';
-
+  userName = '';
+  userImage = '';
   constructor(
     private authService: AuthService,
     private localStorageService: LocalstorageService,
     private router: Router,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private eventBusService: EventBusService
   ) {}
 
   ngOnInit(): void {
@@ -29,9 +36,19 @@ export class ProfileNavComponent implements OnInit, OnDestroy {
       .subscribe((user: User | null) => {
         if (user?.id) {
           this.currentUserId = user.id;
-          console.log(this.currentUserId);
+        }
+        if (user?.name) {
+          this.userName = user.name;
+        }
+        if (user?.image) {
+          this.userImage = user.image;
         }
       });
+
+    this.eventBusService.on(
+      'changePic',
+      (image: any) => (this.userImage = image)
+    );
   }
 
   ngOnDestroy(): void {

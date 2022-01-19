@@ -54,4 +54,8 @@ export class UsersService {
   isCurrentUserAuthenticated() {
     return this.usersFacade.isAuthenticated$;
   }
+
+  updateOrdinaryUser(userData: FormData, id: string): Observable<User> {
+    return this.http.put<User>(`${this.api}updateUserProfile/${id}`, userData);
+  }
 }

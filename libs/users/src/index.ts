@@ -10,3 +10,4 @@ export * from './lib/services/auth.service';
 export * from './lib/services/auth-guard.service';
 export * from './lib/services/simpleAuth-guard.service';
 export * from './lib/services/jwt.interceptor';
+export * from './lib/eventBus/eventBus.service';

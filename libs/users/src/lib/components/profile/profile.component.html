@@ -1,3 +1,10 @@
 <div>
-  <users-change-pic></users-change-pic>
+  <users-change-pic
+    [imageDisplay]="imagePath"
+    (picChange)="changePic($event)"
+  ></users-change-pic>
+</div>
+
+<div>
+  <button (click)="onSbmit()">submit</button>
 </div>

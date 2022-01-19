@@ -1,17 +1,20 @@
 <div class="profile">
   <div class="profile-img-container">
-    <img
-      class="profile-img-container-el"
-      src="https://commschool.ge/wp-content/uploads/2021/07/kote-960x604.png"
-    />
-    <div
-      (click)="changePic()"
-      class="profile-img-container-changerDiv bounce child"
-    >
-      <i
-        class="pi pi-pencil"
-        style="font-size: 2rem; color: white; margin-top: 20px; opacity: 1"
-      ></i>
+    <img [src]="imageDisplay" class="profile-img-container-el" />
+    <!-- <i *ngIf="!imageDisplay" class="pi pi-user" style="font-size: 2rem"></i> -->
+    <div class="profile-img-container-changerDiv bounce child">
+      <div class="upload-btn-wrapper">
+        <button class="btn">
+          <i class="pi pi-pencil" style="font-size: 2rem; color: white"></i>
+        </button>
+        <input type="file" (change)="onImageUpload($event)" name="myfile" />
+      </div>
     </div>
   </div>
 </div>
+
+<!-- <img
+      class="profile-img-container-el"
+      [src]="imageDisplay"
+      src="https://commschool.ge/wp-content/uploads/2021/07/kote-960x604.png"
+    /> -->
