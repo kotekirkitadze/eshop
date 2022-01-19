@@ -14,6 +14,7 @@ import { UsersEffects } from './state/users.effects';
 import { UsersFacade } from './state/users.facade';
 import { SignupComponent } from './pages/signup/signup.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ChangePicComponent } from './components/change-pic/change-pic.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -32,8 +33,8 @@ const routes: Routes = [
     StoreModule.forFeature(fromUsers.USERS_FEATURE_KEY, fromUsers.reducer),
     EffectsModule.forFeature([UsersEffects]),
   ],
-  declarations: [LoginComponent, SignupComponent, ProfileComponent],
+  declarations: [LoginComponent, SignupComponent, ProfileComponent, ChangePicComponent],
   providers: [UsersFacade],
-  exports: [SignupComponent, ProfileComponent],
+  exports: [SignupComponent, ProfileComponent, ChangePicComponent],
 })
 export class UsersModule {}
