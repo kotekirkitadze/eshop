@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
     this.emit('joinRoom', { userId: 12, room: 'support' });
+    this.listen('message').subscribe(console.log);
   }
 
   sendM() {
