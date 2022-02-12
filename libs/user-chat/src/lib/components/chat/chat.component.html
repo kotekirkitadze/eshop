@@ -1,29 +1,18 @@
 <div class="chatbox">
   <div class="chatlogs">
-    <div class="chat friend">
-      <div class="user-photo">
+    <div
+      class="chat"
+      *ngFor="let m of messages"
+      [ngClass]="m.isSelf ? 'self' : 'friend'"
+    >
+      <div
+        class="user-photo"
+        #imageElement
+        [style.background-image]="'url(' + m.image + ')'"
+      >
         <!-- <img src="./mypic.jfif" alt="" /> -->
       </div>
-      <p class="chat-message">Hi</p>
-    </div>
-
-    <div class="chat self">
-      <div class="user-photo"></div>
-      <p class="chat-message">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium hic
-        voluptate veritatis iure? Culpa, sapiente obcaecati. Temporibus,
-        mollitia, dignissimos quos sunt eligendi perspiciatis minus dolorum
-        assumenda deleniti fugiat, accusantium commodi!
-      </p>
-    </div>
-    <div class="chat self">
-      <div class="user-photo"></div>
-      <p class="chat-message">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium hic
-        voluptate veritatis iure? Culpa, sapiente obcaecati. Temporibus,
-        mollitia, dignissimos quos sunt eligendi perspiciatis minus dolorum
-        assumenda deleniti fugiat, accusantium commodi!
-      </p>
+      <p class="chat-message">{{ m.message }}</p>
     </div>
   </div>
   <div class="chat-form">

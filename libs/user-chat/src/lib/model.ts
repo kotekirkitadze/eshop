@@ -13,3 +13,11 @@ export class User {
   city?: string;
   country?: string;
 }
+
+export interface Message {
+  name: string;
+  isSelf: boolean;
+  message: string;
+  time: string;
+  image?: string;
+}
