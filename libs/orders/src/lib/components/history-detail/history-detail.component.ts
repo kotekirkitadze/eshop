@@ -15,7 +15,6 @@ export class HistoryDetailComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private orderService: OrdersService,
-    private router: Router,
     private location: Location
   ) {}
 

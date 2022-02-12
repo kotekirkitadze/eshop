@@ -6,32 +6,32 @@ import { io } from 'socket.io-client';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'ngshop';
   socket: any;
   readonly url: string = 'http://localhost:3000/api/v1/chat';
 
   constructor() {
-    this.socket = io(this.url);
+    // this.socket = io(this.url);
   }
 
-  listen(eventName: string) {
-    return new Observable((subscriber) => {
-      this.socket.on(eventName, (data: any) => {
-        subscriber.next(data);
-      });
-    });
-  }
+  // listen(eventName: string) {
+  //   return new Observable((subscriber) => {
+  //     this.socket.on(eventName, (data: any) => {
+  //       subscriber.next(data);
+  //     });
+  //   });
+  // }
 
-  emit(eventName: string, data: any) {
-    this.socket.emit(eventName, data);
-  }
-  ngOnInit(): void {
-    this.emit('joinRoom', { userId: 12, room: 'support' });
-    this.listen('message').subscribe(console.log);
-  }
+  // emit(eventName: string, data: any) {
+  //   this.socket.emit(eventName, data);
+  // }
+  // ngOnInit(): void {
+  //   this.emit('joinRoom', { userId: 12, room: 'support' });
+  //   this.listen('message').subscribe(console.log);
+  // }
 
-  sendM() {
-    this.emit('chatMessage', 'mogesalmebi saforto');
-  }
+  // sendM() {
+  //   this.emit('chatMessage', 'mogesalmebi saforto');
+  // }
 }

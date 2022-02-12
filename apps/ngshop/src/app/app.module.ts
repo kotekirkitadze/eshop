@@ -25,6 +25,7 @@ import { environment } from '@env/environment';
 import { NgxStripeModule } from 'ngx-stripe';
 import { ProfileNavComponent } from './shared/profile-nav/profile-nav.component';
 import { NgSelect2Module } from 'ng-select2';
+import { UserChatModule } from '@appbit/user-chat';
 
 const routes = [{ path: '', component: HomePageComponent }];
 
@@ -46,6 +47,7 @@ const routes = [{ path: '', component: HomePageComponent }];
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     UiModule,
+    UserChatModule,
     AccordionModule,
     ProductsModule,
     OrdersModule,

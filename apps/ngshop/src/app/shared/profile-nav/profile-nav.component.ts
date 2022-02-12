@@ -62,6 +62,10 @@ export class ProfileNavComponent implements OnInit, OnDestroy {
     this.router.navigate([`/history/${this.currentUserId}`]);
   }
 
+  toSupportChat() {
+    this.router.navigate([`/userchat/${this.currentUserId}`]);
+  }
+
   logOut() {
     this.authService.logOut();
     this.isActive = !this.isActive;

@@ -440,6 +440,32 @@
       },
       "tags": []
     },
+    "user-chat": {
+      "projectType": "library",
+      "root": "libs/user-chat",
+      "sourceRoot": "libs/user-chat/src",
+      "prefix": "appbit",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/user-chat"],
+          "options": {
+            "jestConfig": "libs/user-chat/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/user-chat/src/**/*.ts",
+              "libs/user-chat/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "users": {
       "projectType": "library",
       "root": "libs/users",

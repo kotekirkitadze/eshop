@@ -23,11 +23,11 @@
   <div class="chatlist" *ngFor="let room of rooms">
     <div class="block active" (click)="joinRoom(room)">
       <div class="imgbx">
-        <img class="cover" src="../../../../assets/images/mypic.jfif" alt="" />
+        <img class="cover" [src]="room.userImage" alt="" />
       </div>
       <div class="details">
         <div class="listHead">
-          <h4>{{ room.id }}</h4>
+          <h4>{{ room.name }}</h4>
           <p class="time">room</p>
         </div>
         <div class="message_p">

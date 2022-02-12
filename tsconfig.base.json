@@ -18,6 +18,7 @@
       "@appbit/orders": ["libs/orders/src/index.ts"],
       "@appbit/products": ["libs/products/src/index.ts"],
       "@appbit/ui": ["libs/ui/src/index.ts"],
+      "@appbit/user-chat": ["libs/user-chat/src/index.ts"],
       "@appbit/users": ["libs/users/src/index.ts"],
       "@env/*": ["environments/*"]
     }

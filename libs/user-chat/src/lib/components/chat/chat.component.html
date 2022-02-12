@@ -1,0 +1,39 @@
+<div class="chatbox">
+  <div class="chatlogs">
+    <div class="chat friend">
+      <div class="user-photo">
+        <!-- <img src="./mypic.jfif" alt="" /> -->
+      </div>
+      <p class="chat-message">Hi</p>
+    </div>
+
+    <div class="chat self">
+      <div class="user-photo"></div>
+      <p class="chat-message">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium hic
+        voluptate veritatis iure? Culpa, sapiente obcaecati. Temporibus,
+        mollitia, dignissimos quos sunt eligendi perspiciatis minus dolorum
+        assumenda deleniti fugiat, accusantium commodi!
+      </p>
+    </div>
+    <div class="chat self">
+      <div class="user-photo"></div>
+      <p class="chat-message">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium hic
+        voluptate veritatis iure? Culpa, sapiente obcaecati. Temporibus,
+        mollitia, dignissimos quos sunt eligendi perspiciatis minus dolorum
+        assumenda deleniti fugiat, accusantium commodi!
+      </p>
+    </div>
+  </div>
+  <div class="chat-form">
+    <textarea
+      [(ngModel)]="message"
+      name=""
+      id=""
+      cols="30"
+      rows="10"
+    ></textarea>
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div>
