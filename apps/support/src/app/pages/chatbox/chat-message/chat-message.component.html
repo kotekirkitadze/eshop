@@ -25,42 +25,13 @@
     <div class="message frnd_message">
       <p>Hi <br /><span>12:15</span></p>
     </div>
-    <div class="message my_message">
-      <p>Hi <br /><span>12:15</span></p>
-    </div>
-    <div class="message frnd_message">
-      <p>Hi <br /><span>12:15</span></p>
-    </div>
-    <div class="message my_message">
-      <p>Hi <br /><span>12:15</span></p>
-    </div>
-    <div class="message frnd_message">
-      <p>Hi <br /><span>12:15</span></p>
-    </div>
-    <div class="message my_message">
-      <p>Hi <br /><span>12:15</span></p>
-    </div>
-    <div class="message frnd_message">
-      <p>Hi <br /><span>12:15</span></p>
-    </div>
-    <div class="message my_message">
-      <p>Hi <br /><span>12:15</span></p>
-    </div>
-    <div class="message frnd_message">
-      <p>Hi <br /><span>12:15</span></p>
-    </div>
-    <div class="message my_message">
-      <p>Hi <br /><span>12:15</span></p>
-    </div>
-    <div class="message frnd_message">
-      <p>Hi <br /><span>12:15</span></p>
-    </div>
   </div>
   <!-- chat input -->
   <div class="chatbox_input">
     <!-- <ion-icon name="happy-outline"></ion-icon>
     <ion-icon name="attach-outline"></ion-icon> -->
-    <input type="text" placeholder="Type a message" />
+    <input [(ngModel)]="message" type="text" placeholder="Type a message" />
+    <button (click)="sendMessage()">Send</button>
     <!-- <ion-icon name="mic"></ion-icon> -->
   </div>
 </div>

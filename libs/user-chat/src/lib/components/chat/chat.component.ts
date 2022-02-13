@@ -36,7 +36,6 @@ export class ChatComponent implements OnInit, OnDestroy {
         time: message.time,
         message: message.text,
       });
-      console.log('ss message', this.messages);
     });
   }
 
