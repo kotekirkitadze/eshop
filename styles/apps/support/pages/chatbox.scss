@@ -41,7 +41,7 @@ body {
   flex: 70%;
   background: #e5ddd5;
   height: 100%;
-  width: 279%;
+  width: 67rem;
 }
 
 .container .rightSide ::before {
@@ -246,7 +246,7 @@ body {
 .chatBox {
   position: relative;
   width: 100%;
-  height: calc(100% - 420px);
+  height: calc(100% - 120px);
   padding: 50px;
   overflow-y: auto;
 }
@@ -254,7 +254,8 @@ body {
 .message {
   position: relative;
   display: flex;
-  width: 100%;
+  // width: 100%;
+  max-width: 50%;
   margin: 5px 0;
 }
 
@@ -267,6 +268,7 @@ body {
   background: #dcf8c6;
   border-radius: 10px;
   font-size: 0.9em;
+  word-wrap: break-word;
 }
 
 .message p ::before {
@@ -294,6 +296,9 @@ body {
 
 .my_message {
   justify-content: flex-end;
+  left: 32rem;
+
+  // overflow: hidden;
 }
 .frnd_message {
   justify-content: flex-start;
@@ -329,7 +334,7 @@ body {
   display: flex;
   // justify-content: space-between;
   align-items: center;
-  bottom: -299px;
+  // bottom: -299px;
 }
 
 .chatbox_input .sendMessageSupport {

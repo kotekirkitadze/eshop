@@ -16,10 +16,10 @@
 
   <!-- chatbox -->
   <div class="chatBox">
-    <div class="message my_message">
+    <!-- <div class="message my_message">
       <p>iusto? <br /><span> 12312</span></p>
-    </div>
-    <!-- <div
+    </div> -->
+    <div
       class="message"
       *ngFor="let message of messages"
       [ngClass]="message.isSelf ? 'my_message' : 'frnd_message'"
@@ -27,7 +27,7 @@
       <p>
         {{ message.message }}<br /><span>{{ message.time }}</span>
       </p>
-    </div> -->
+    </div>
   </div>
   <!-- chat input -->
   <div class="chatbox_input">
@@ -35,7 +35,7 @@
     <!-- <ion-icon name="happy-outline"></ion-icon>
     <ion-icon name="attach-outline"></ion-icon> -->
     <input [(ngModel)]="message" placeholder="Type a message" />
-    <button class="sendMessageSupport">Send</button>
+    <button class="sendMessageSupport" (click)="sendMessage()">Send</button>
     <!-- <button><i class="pi pi-check"></i></button> -->
     <!-- <ion-icon name="mic"></ion-icon> -->
   </div>

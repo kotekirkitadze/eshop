@@ -46,7 +46,7 @@ export class ChatMessageComponent implements OnInit, OnDestroy {
   }
 
   sendMessage(): void {
-    // this.webSocketService.emit('chatMessage', this.message);
+    this.webSocketService.emit('chatMessage', this.message);
     const message: Message = {
       isSelf: true,
       name: this.room.name ? this.room.name : '',
