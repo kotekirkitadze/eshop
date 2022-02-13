@@ -29,6 +29,7 @@ body {
 }
 
 .container .leftSide {
+  width: 22rem;
   position: relative;
   flex: 30%;
   background: #fff;
@@ -39,15 +40,17 @@ body {
   position: relative;
   flex: 70%;
   background: #e5ddd5;
-  height: 142%;
+  height: 100%;
+  width: 279%;
 }
 
 .container .rightSide ::before {
   content: '';
-  position: absolute;
+  // position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  // width: 100%;
+  //  width: 100%;
   height: 100%;
   /* background: url(); */
   opacity: 0.06;
@@ -226,6 +229,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: -45rem;
 }
 
 .imgText h4 {
@@ -323,17 +327,18 @@ body {
   background: #f0f0f0;
   padding: 15px;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   align-items: center;
+  bottom: -299px;
 }
 
-.chatbox_input ion-icon {
+.chatbox_input .sendMessageSupport {
   cursor: pointer;
   font-size: 1.8em;
   color: #51585c;
 }
 
-.chatbox_input ion-icon:nth-child(1) {
+.chatbox_input .sendMessageSuppor:nth-child(1) {
   margin-right: 15px;
 }
 .chatbox_input input {

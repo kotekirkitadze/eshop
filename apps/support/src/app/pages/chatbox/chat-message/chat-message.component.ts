@@ -20,7 +20,19 @@ export class ChatMessageComponent implements OnInit, OnDestroy {
     private selectionEventService: SelectionEventService
   ) {}
 
+  private _listenMessage() {
+    this.webSocketService.listen('message').subscribe((message: any) => {
+      this.messages.push({
+        name: message.username,
+        isSelf: false,
+        time: message.time,
+        message: message.text,
+      });
+    });
+  }
+
   ngOnInit(): void {
+    this._listenMessage();
     this.selectionEventService.selectedUser$
       .pipe(takeUntil(this.endSubs$))
       .subscribe((room: Room) => {
@@ -33,5 +45,16 @@ export class ChatMessageComponent implements OnInit, OnDestroy {
     this.endSubs$.complete();
   }
 
-  sendMessage(): void {}
+  sendMessage(): void {
+    // this.webSocketService.emit('chatMessage', this.message);
+    const message: Message = {
+      isSelf: true,
+      name: this.room.name ? this.room.name : '',
+      message: this.message,
+      time: '' + new Date().getDay(),
+      // image: this.room.image ? this.currentUser.image : '',
+    };
+    this.messages.push(message);
+    this.message = '';
+  }
 }
