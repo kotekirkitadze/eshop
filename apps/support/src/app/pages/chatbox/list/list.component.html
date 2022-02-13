@@ -23,7 +23,11 @@
   </div>
   <!-- chat List -->
   <div class="chatlist" *ngFor="let room of rooms">
-    <div class="block active" (click)="selectUser(room)">
+    <div
+      class="block"
+      (click)="selectUser(room)"
+      [ngClass]="[checkSelection(room) ? 'active' : '']"
+    >
       <div class="imgbx">
         <img class="cover" [src]="room.userImage" alt="" />
       </div>
