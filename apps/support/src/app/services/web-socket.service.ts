@@ -26,7 +26,22 @@ export class WebSocketService {
     });
   }
 
-  emit(eventName: string, data: any) {
+  emit(eventName: string, data: any = '') {
     this.socket.emit(eventName, data);
   }
+
+  dd() {
+    this.socket.disconnect();
+  }
 }
+
+// socket.on('unsubscribe', function (room) {
+//   try {
+//     console.log('[socket]', 'leave room :', room);
+//     socket.leave(room);
+//     socket.to(room).emit('user left', socket.id);
+//   } catch (e) {
+//     console.log('[error]', 'leave room :', e);
+//     socket.emit('error', 'couldnt perform requested action');
+//   }
+// });

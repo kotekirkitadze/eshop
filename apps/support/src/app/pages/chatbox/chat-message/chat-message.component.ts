@@ -10,7 +10,7 @@ import { Message } from '../../../models/model';
   styleUrls: ['./chat-message.component.scss'],
 })
 export class ChatMessageComponent implements OnInit, OnDestroy {
-  room: Partial<Room> = {};
+  room: Partial<Room> | undefined = {};
   message = '';
   messages: Message[] = [];
   endSubs$: Subject<number> = new Subject<number>();
@@ -21,23 +21,39 @@ export class ChatMessageComponent implements OnInit, OnDestroy {
   ) {}
 
   private _listenMessage() {
-    this.webSocketService.listen('message').subscribe((message: any) => {
-      this.messages.push({
-        name: message.username,
-        isSelf: false,
-        time: message.time,
-        message: message.text,
+    this.webSocketService
+      .listen('message')
+      .pipe(takeUntil(this.endSubs$))
+      .subscribe((message: any) => {
+        this.messages.push({
+          name: message.username,
+          isSelf: false,
+          time: message.time,
+          message: message.text,
+        });
       });
-    });
   }
 
   ngOnInit(): void {
     this._listenMessage();
+    this._listenSelectedRoom();
+  }
+
+  private _listenSelectedRoom() {
     this.selectionEventService.selectedUser$
       .pipe(takeUntil(this.endSubs$))
       .subscribe((room: Room) => {
         this.room = room;
+        console.log('new selcetion', room);
       });
+  }
+
+  completeRoom() {
+    // this.webSocketService.dd();
+    this.messages = [];
+    this.webSocketService.emit('userCompleteChat', this.room?.userId);
+    this.selectionEventService.changeSelectedUser(null);
+    this.room = undefined;
   }
 
   ngOnDestroy(): void {
@@ -49,7 +65,7 @@ export class ChatMessageComponent implements OnInit, OnDestroy {
     this.webSocketService.emit('chatMessage', this.message);
     const message: Message = {
       isSelf: true,
-      name: this.room.name ? this.room.name : '',
+      name: this.room?.name ? this.room.name : '',
       message: this.message,
       time: '' + new Date().getDay(),
       // image: this.room.image ? this.currentUser.image : '',
