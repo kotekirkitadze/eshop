@@ -13,6 +13,10 @@ import { AppComponent } from './app.component';
 import { ChatMessageComponent } from './pages/chatbox/chat-message/chat-message.component';
 import { ChatboxComponent } from './pages/chatbox/chatbox.component';
 import { ListComponent } from './pages/chatbox/list/list.component';
+import { UXModule } from './UX-lib.module';
+import { CheckboxModule } from 'primeng/checkbox';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes = [
   {
@@ -30,10 +34,12 @@ const routes = [
     ChatMessageComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     UsersModule,
     HttpClientModule,
+    CheckboxModule,
     RouterModule.forRoot(routes),
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
@@ -42,6 +48,7 @@ const routes = [
       logOnly: environment.production, // Restrict extension to log-only mode
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
+    UXModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

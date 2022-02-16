@@ -20,40 +20,9 @@ export class ChatMessageComponent implements OnInit, OnDestroy {
     private selectionEventService: SelectionEventService
   ) {}
 
-  private _listenMessage() {
-    this.webSocketService
-      .listen('message')
-      .pipe(takeUntil(this.endSubs$))
-      .subscribe((message: any) => {
-        this.messages.push({
-          name: message.username,
-          isSelf: false,
-          time: message.time,
-          message: message.text,
-        });
-      });
-  }
-
   ngOnInit(): void {
-    this._listenMessage();
     this._listenSelectedRoom();
-  }
-
-  private _listenSelectedRoom() {
-    this.selectionEventService.selectedUser$
-      .pipe(takeUntil(this.endSubs$))
-      .subscribe((room: Room) => {
-        this.room = room;
-        console.log('new selcetion', room);
-      });
-  }
-
-  completeRoom() {
-    // this.webSocketService.dd();
-    this.messages = [];
-    this.webSocketService.emit('userCompleteChat', this.room?.userId);
-    this.selectionEventService.changeSelectedUser(null);
-    this.room = undefined;
+    this._listenMessage();
   }
 
   ngOnDestroy(): void {
@@ -61,16 +30,45 @@ export class ChatMessageComponent implements OnInit, OnDestroy {
     this.endSubs$.complete();
   }
 
+  private _listenSelectedRoom() {
+    this.selectionEventService.selectedUser$
+      .pipe(takeUntil(this.endSubs$))
+      .subscribe((room: Room) => {
+        this.room = room;
+      });
+  }
+
+  private _listenMessage() {
+    this.webSocketService
+      .listen('message')
+      .pipe(takeUntil(this.endSubs$))
+      .subscribe((message: any) => this.generateMessage(message, false));
+  }
+
+  generateMessage(message: any, isSelf: boolean): void {
+    const newMessage: Message = {
+      isSelf: isSelf,
+      name: isSelf ? this.room?.name : message.username,
+      message: isSelf ? this.message : message.text,
+      time: isSelf ? '' + new Date().getDay() : message.time,
+    };
+    this.messages.push(newMessage);
+  }
+
   sendMessage(): void {
     this.webSocketService.emit('chatMessage', this.message);
-    const message: Message = {
-      isSelf: true,
-      name: this.room?.name ? this.room.name : '',
-      message: this.message,
-      time: '' + new Date().getDay(),
-      // image: this.room.image ? this.currentUser.image : '',
-    };
-    this.messages.push(message);
+    this.generateMessage('_', true);
     this.message = '';
+  }
+
+  completeRoom() {
+    this.webSocketService.emit('userCompleteChat', this.room?.userId);
+    this.selectionEventService.changeSelectedUser(null);
+    this._resetValues();
+  }
+
+  private _resetValues(): void {
+    this.messages = [];
+    this.room = undefined;
   }
 }

@@ -9,16 +9,10 @@
     <div class="nav_icons">
       <li><button>search</button></li>
       <li><button (click)="completeRoom()">Complete Room</button></li>
-      <!-- <li><ion-icon name="search-outline"></ion-icon></li>
-      <li><ion-icon name="ellipsis-vertical"></ion-icon></li> -->
     </div>
   </div>
-
   <!-- chatbox -->
   <div class="chatBox">
-    <!-- <div class="message my_message">
-      <p>iusto? <br /><span> 12312</span></p>
-    </div> -->
     <div
       class="message"
       *ngFor="let message of messages"
@@ -31,26 +25,7 @@
   </div>
   <!-- chat input -->
   <div class="chatbox_input">
-    <!-- <div> -->
-    <!-- <ion-icon name="happy-outline"></ion-icon>
-    <ion-icon name="attach-outline"></ion-icon> -->
     <input [(ngModel)]="message" placeholder="Type a message" />
     <button class="sendMessageSupport" (click)="sendMessage()">Send</button>
-    <!-- <button><i class="pi pi-check"></i></button> -->
-    <!-- <ion-icon name="mic"></ion-icon> -->
   </div>
 </div>
-
-<!-- <div class="chatBox"  >
-    <div
-      class="message my_message"
-
-    >
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda odit
-        perspiciatis temporibus accusamus excepturi optio dignissimos, voluptas,
-        sed mollitia, libero natus dolores harum deserunt tenetur quia. Quis
-        ipsum quisquam iusto? <br /><span> 12312</span>
-      </p>
-    </div>
-  </div>   -->

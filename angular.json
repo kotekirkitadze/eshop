@@ -141,7 +141,10 @@
             "tsConfig": "apps/ngshop/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["apps/ngshop/src/favicon.ico", "apps/ngshop/src/assets"],
-            "styles": ["apps/ngshop/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/ngshop/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -315,7 +318,10 @@
               "apps/support/src/favicon.ico",
               "apps/support/src/assets"
             ],
-            "styles": ["apps/support/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/support/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {

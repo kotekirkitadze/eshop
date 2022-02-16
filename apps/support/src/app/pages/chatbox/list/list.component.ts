@@ -23,8 +23,27 @@ export class ListComponent implements OnInit, OnDestroy {
     private userService: UsersService
   ) {}
 
+  ngOnInit(): void {
+    this._listenUserChange();
+    this._lisetnSelection();
+  }
+
+  ngOnDestroy(): void {
+    this.endSubs$.next(1);
+    this.endSubs$.complete();
+  }
+
+  selectUser(room: Room) {
+    this.joinRoom(room);
+    this.selectionEventService.changeSelectedUser(room);
+  }
+
   joinRoom(room: Room) {
-    const infoForSupport: Room = {
+    this.webSocketService.emit('joinRoom', this._generateDataForJoining(room));
+  }
+
+  private _generateDataForJoining(room: Room): Room {
+    return {
       email: this.currentUser.email ? this.currentUser?.email : '',
       userId: this.currentUser.id ? this.currentUser.id : '',
       name: this.currentUser.name ? this.currentUser.name : '',
@@ -32,13 +51,6 @@ export class ListComponent implements OnInit, OnDestroy {
       room: room.room,
       isSupport: true,
     };
-    console.log('rrr', infoForSupport, room);
-    this.webSocketService.emit('joinRoom', infoForSupport);
-  }
-
-  selectUser(room: Room) {
-    this.joinRoom(room);
-    this.selectionEventService.changeSelectedUser(room);
   }
 
   private _lisetnSelection() {
@@ -53,21 +65,6 @@ export class ListComponent implements OnInit, OnDestroy {
     this.userService.observeCurrentUser().subscribe((user: any) => {
       this.currentUser = user;
     });
-  }
-
-  ngOnInit(): void {
-    this._listenUserChange();
-
-    this._lisetnSelection();
-  }
-
-  ngOnDestroy(): void {
-    this.endSubs$.next(1);
-    this.endSubs$.complete();
-  }
-
-  sendMes() {
-    this.webSocketService.emit('chatMessage', 'mogesalmebi eee');
   }
 
   checkSelection(room: Room) {

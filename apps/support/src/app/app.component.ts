@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
-import { UsersService } from '@appbit/users';
+
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+
 @Component({
   selector: 'appbit-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(private userService: UsersService) {
-    userService.observeCurrentUser().subscribe(console.log);
+  checked = '';
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    iconRegistry.addSvgIconSet(
+      sanitizer.bypassSecurityTrustResourceUrl('assets/avatars.svg')
+    );
   }
   title = 'support';
 }
