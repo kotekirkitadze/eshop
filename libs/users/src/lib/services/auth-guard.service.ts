@@ -22,8 +22,14 @@ export class AuthGuard implements CanActivate {
     const token = this.localStorageService.getToken();
 
     if (token) {
+      // eslint-disable-next-line no-var
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
       if (decodedToken.isAdmin && !this._tokenExpired(decodedToken.exp)) {
+        return true;
+      } else if (
+        decodedToken.isSupport &&
+        !this._tokenExpired(decodedToken.exp)
+      ) {
         return true;
       }
     }
