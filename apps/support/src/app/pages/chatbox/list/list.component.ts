@@ -30,6 +30,7 @@ export class ListComponent implements OnInit, OnDestroy {
       name: this.currentUser.name ? this.currentUser.name : '',
       userImage: this.currentUser.image ? this.currentUser.image : '',
       room: room.room,
+      isSupport: true,
     };
     console.log('rrr', infoForSupport, room);
     this.webSocketService.emit('joinRoom', infoForSupport);

@@ -5,4 +5,5 @@ export interface Room {
   name: string;
   email: string;
   userImage: string;
+  isSupport: boolean;
 }

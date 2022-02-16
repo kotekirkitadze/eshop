@@ -37,7 +37,6 @@ export class ChatComponent implements OnInit, OnDestroy {
         message: message.text,
         image: message.image,
       });
-      console.log('eeeeKKKK', message);
     });
   }
 
@@ -49,6 +48,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.endSubs$.next(1);
     this.endSubs$.complete();
+    this.socketService.disconnect();
   }
 
   joinSupportRoom(user: User) {

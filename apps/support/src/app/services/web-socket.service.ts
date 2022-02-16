@@ -29,10 +29,6 @@ export class WebSocketService {
   emit(eventName: string, data: any = '') {
     this.socket.emit(eventName, data);
   }
-
-  dd() {
-    this.socket.disconnect();
-  }
 }
 
 // socket.on('unsubscribe', function (room) {

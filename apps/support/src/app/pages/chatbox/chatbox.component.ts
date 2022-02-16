@@ -19,17 +19,10 @@ export class ChatboxComponent implements OnInit {
 
   ngOnInit(): void {
     this._listenRooms();
-    this._resetRooms();
   }
 
   private _listenRooms() {
     this.webSocketService.listen('roomList').subscribe((rooms) => {
-      this.rooms = rooms as Room[];
-      console.log('roomseee', rooms);
-    });
-  }
-  private _resetRooms() {
-    this.webSocketService.listen('resetRooms').subscribe((rooms) => {
       this.rooms = rooms as Room[];
       console.log('roomseee', rooms);
     });
