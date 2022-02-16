@@ -6,6 +6,7 @@ export class User {
   phone?: string;
   token?: string;
   isAdmin?: string;
+  isSupport?: string;
   image?: string;
   street?: string;
   apartment?: string;

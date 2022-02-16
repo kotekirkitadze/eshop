@@ -2,17 +2,17 @@
   <div class="chatlogs">
     <div
       class="chat"
-      *ngFor="let m of messages"
-      [ngClass]="m.isSelf ? 'self' : 'friend'"
+      *ngFor="let message of messages"
+      [ngClass]="message.isSelf ? 'self' : 'friend'"
     >
       <div
         class="user-photo"
         #imageElement
-        [style.background-image]="'url(' + m.image + ')'"
+        [style.background-image]="'url(' + message.image + ')'"
       >
-        <!-- <img src="./mypic.jfif" alt="" /> -->
+        <img [src]="message.image" alt="" />
       </div>
-      <p class="chat-message">{{ m.message }}</p>
+      <p class="chat-message">{{ message.message }}</p>
     </div>
   </div>
   <div class="chat-form">

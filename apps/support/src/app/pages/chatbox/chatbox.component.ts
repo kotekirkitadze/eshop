@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WebSocketService } from '../../services/web-socket.service';
 import { Room } from '../../models';
 import { SelectionEventService } from '../../services/selectionEvent.service';
+import { User, UsersService } from '@appbit/users';
 @Component({
   selector: 'appbit-chatbox',
   templateUrl: './chatbox.component.html',
@@ -9,13 +10,18 @@ import { SelectionEventService } from '../../services/selectionEvent.service';
 })
 export class ChatboxComponent implements OnInit {
   rooms: Room[] = [];
+  user: User = {};
   constructor(
     private webSocketService: WebSocketService,
-    private selectionEventService: SelectionEventService
+    private selectionEventService: SelectionEventService,
+    private userService: UsersService
   ) {}
 
   ngOnInit(): void {
-    // this.webSocketService.emit('joinRoom', { userId: 123, room: 888 });
+    this._listenRooms();
+  }
+
+  private _listenRooms() {
     this.webSocketService.listen('roomList').subscribe((rooms) => {
       this.rooms = rooms as Room[];
       console.log('rooms', rooms);

@@ -47,15 +47,17 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
         this.categoriesService
           .getCategoryById(params.id)
           .pipe(takeUntil(this.endSubs$))
-          .subscribe((category: Category) => {
-            this.getCategoryForm.name.setValue(category.name);
-            this.getCategoryForm.icon.setValue(category.icon);
-            this.getCategoryForm.color.setValue(category.color);
-          });
+          .subscribe(this.setValuesForEditMode);
       } else {
         this.editMode = false;
       }
     });
+  }
+
+  setValuesForEditMode(category: Category) {
+    this.getCategoryForm.name.setValue(category.name);
+    this.getCategoryForm.icon.setValue(category.icon);
+    this.getCategoryForm.color.setValue(category.color);
   }
 
   onSubmit() {

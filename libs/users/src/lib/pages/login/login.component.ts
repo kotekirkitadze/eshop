@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
         this.authError = false;
 
         this.localStorageService.setToken(user.token);
+
         this.usersService.initUserChangeSession();
         this.router.navigate(['/']);
       },

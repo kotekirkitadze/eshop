@@ -2,12 +2,12 @@
   <!-- Header -->
   <div class="header">
     <div class="userimg">
-      <img src="../../../../assets/images/mypic.jfif" class="cover" alt="" />
+      <img [src]="currentUser.image" class="cover" alt="" />
     </div>
     <div class="nav_icons">
       <li><button>1</button></li>
       <li><button>2</button></li>
-      <li><button>3</button></li>
+      <li><button (click)="logOut()">Log Out</button></li>
       <!-- <li><ion-icon name="scan-circle-outline"></ion-icon></li>
       <li><ion-icon name="chatbox"></ion-icon></li>
       <li><ion-icon name="ellipsis-vertical"></ion-icon></li> -->

@@ -35,7 +35,9 @@ export class ChatComponent implements OnInit, OnDestroy {
         isSelf: false,
         time: message.time,
         message: message.text,
+        image: message.image,
       });
+      console.log('eeeeKKKK', message);
     });
   }
 

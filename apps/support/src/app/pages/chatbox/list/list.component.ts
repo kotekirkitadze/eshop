@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { AuthService, User, UsersService } from '@appbit/users';
 import { Subject, takeUntil } from 'rxjs';
 import { Room } from '../../../models';
 import { SelectionEventService } from '../../../services/selectionEvent.service';
@@ -11,18 +12,30 @@ import { WebSocketService } from '../../../services/web-socket.service';
 })
 export class ListComponent implements OnInit, OnDestroy {
   @Input() rooms: Room[] = [];
+  currentUser: User = {};
   endSubs$: Subject<number> = new Subject<number>();
   selectedRoom: Partial<Room> = {};
+
   constructor(
     private webSocketService: WebSocketService,
-    private selectionEventService: SelectionEventService
+    private selectionEventService: SelectionEventService,
+    private authService: AuthService,
+    private userService: UsersService
   ) {}
+
   joinRoom(room: Room) {
-    this.webSocketService.emit('joinRoom', { userId: 11, room: room.room });
+    const infoForSupport: Room = {
+      email: this.currentUser.email ? this.currentUser?.email : '',
+      userId: this.currentUser.id ? this.currentUser.id : '',
+      name: this.currentUser.name ? this.currentUser.name : '',
+      userImage: this.currentUser.image ? this.currentUser.image : '',
+      room: room.room,
+    };
+
+    this.webSocketService.emit('joinRoom', infoForSupport);
   }
 
   selectUser(room: Room) {
-    console.log('asarchevi', room);
     this.joinRoom(room);
     this.selectionEventService.changeSelectedUser(room);
   }
@@ -34,7 +47,16 @@ export class ListComponent implements OnInit, OnDestroy {
         this.selectedRoom = room;
       });
   }
+
+  private _listenUserChange() {
+    this.userService.observeCurrentUser().subscribe((user: any) => {
+      this.currentUser = user;
+    });
+  }
+
   ngOnInit(): void {
+    this._listenUserChange();
+
     this._lisetnSelection();
   }
 
@@ -48,7 +70,10 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   checkSelection(room: Room) {
-    console.log(room.room == this.selectedRoom?.room);
     return room.room == this.selectedRoom?.room;
+  }
+
+  logOut() {
+    this.authService.logout();
   }
 }
