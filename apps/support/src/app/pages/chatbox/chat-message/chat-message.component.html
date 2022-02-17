@@ -6,9 +6,15 @@
       </div>
       <h4>{{ room.name }}<br /><span>online</span></h4>
     </div>
-    <div class="nav_icons">
-      <li><button>search</button></li>
-      <li><button (click)="completeRoom()">Complete Room</button></li>
+    <div class="nav_icons clientcontroller">
+      <li>
+        <button class="infoBtn"><mat-icon>info</mat-icon></button>
+      </li>
+      <li>
+        <button class="completeBtn" (click)="completeRoom()">
+          <mat-icon>check_circle</mat-icon>
+        </button>
+      </li>
     </div>
   </div>
   <!-- chatbox -->
@@ -19,13 +25,17 @@
       [ngClass]="message.isSelf ? 'my_message' : 'frnd_message'"
     >
       <p>
-        {{ message.message }}<br /><span>{{ message.time }}</span>
+        {{ message.message }}<br /><span>{{
+          message.time | date: 'short'
+        }}</span>
       </p>
     </div>
   </div>
   <!-- chat input -->
   <div class="chatbox_input">
     <input [(ngModel)]="message" placeholder="Type a message" />
-    <button class="sendMessageSupport" (click)="sendMessage()">Send</button>
+    <button class="sendMessageSupport" (click)="sendMessage()">
+      <mat-icon>send</mat-icon>
+    </button>
   </div>
 </div>

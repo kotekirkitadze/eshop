@@ -11,8 +11,8 @@ body {
   align-items: center;
   min-height: 100vh;
   background: linear-gradient(
-    #009688,
-    #009688 130px,
+    #ee4d0d,
+    #eb6020 130px,
     #d9dbd5 130px,
     #d9dbd5 100%
   );
@@ -86,6 +86,32 @@ body {
 
 .nav_icons {
   display: flex;
+
+  .supportLogOutBtn {
+    border: none;
+    color: red;
+    cursor: pointer;
+  }
+}
+
+.clientcontroller {
+  margin-right: 15px;
+  .infoBtn {
+    color: #d57373;
+    cursor: pointer;
+  }
+  .completeBtn {
+    color: #09a109;
+    cursor: pointer;
+  }
+}
+
+.clientcontroller mat-icon {
+  font-size: 2.2rem;
+}
+
+.clientcontroller button {
+  border: none;
 }
 
 .nav_icons li {
@@ -152,7 +178,20 @@ body {
 }
 
 .chatlist .block.active {
-  background: #e9a707;
+  background: #46a35e;
+  color: white;
+
+  // .details {
+  //   color: white;
+  // }
+
+  // .message_p {
+  //   color: white;
+  // }
+
+  &:hover {
+    background-color: #46a35e;
+  }
 }
 .chatlist .block:hover {
   background: #f5f5f5;
@@ -229,7 +268,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: -45rem;
+  margin-left: -51rem;
 }
 
 .imgText h4 {
@@ -341,6 +380,13 @@ body {
   cursor: pointer;
   font-size: 1.8em;
   color: #51585c;
+  border: none;
+  color: #085bdf;
+
+  mat-icon {
+    font-size: 43px;
+    margin-top: 10px;
+  }
 }
 
 .chatbox_input .sendMessageSuppor:nth-child(1) {

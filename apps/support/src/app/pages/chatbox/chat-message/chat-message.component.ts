@@ -50,8 +50,9 @@ export class ChatMessageComponent implements OnInit, OnDestroy {
       isSelf: isSelf,
       name: isSelf ? this.room?.name : message.username,
       message: isSelf ? this.message : message.text,
-      time: isSelf ? '' + new Date().getDay() : message.time,
+      time: isSelf ? '' + new Date() : message.time,
     };
+    console.log(newMessage);
     this.messages.push(newMessage);
   }
 
