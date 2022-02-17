@@ -33,7 +33,12 @@
   </div>
   <!-- chat input -->
   <div class="chatbox_input">
-    <input [(ngModel)]="message" placeholder="Type a message" />
+    <input
+      (focus)="startWriting()"
+      (focusout)="stopWriting()"
+      [(ngModel)]="message"
+      placeholder="Type a message"
+    />
     <button class="sendMessageSupport" (click)="sendMessage()">
       <mat-icon>send</mat-icon>
     </button>

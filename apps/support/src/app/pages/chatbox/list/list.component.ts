@@ -2,6 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AuthService, User, UsersService } from '@appbit/users';
 import { Subject, takeUntil } from 'rxjs';
 import { Room } from '../../../models';
+import { SocketEvents } from '../../../models/socket-events';
 import { SelectionEventService } from '../../../services/selectionEvent.service';
 import { WebSocketService } from '../../../services/web-socket.service';
 
@@ -37,9 +38,11 @@ export class ListComponent implements OnInit, OnDestroy {
     this.joinRoom(room);
     this.selectionEventService.changeSelectedUser(room);
   }
-
   joinRoom(room: Room) {
-    this.webSocketService.emit('joinRoom', this._generateDataForJoining(room));
+    this.webSocketService.emit(
+      SocketEvents.joinRoom,
+      this._generateDataForJoining(room)
+    );
   }
 
   private _generateDataForJoining(room: Room): Room {

@@ -2,6 +2,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { RouterModule } from '@angular/router';
 import { AuthGuard, UsersModule, UsersService } from '@appbit/users';
 import { environment } from '@env/environment';
@@ -10,13 +12,13 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
-import { ChatMessageComponent } from './pages/chatbox/chat-message/chat-message.component';
-import { ChatboxComponent } from './pages/chatbox/chatbox.component';
-import { ListComponent } from './pages/chatbox/list/list.component';
-import { UXModule } from './UX-lib.module';
-import { CheckboxModule } from 'primeng/checkbox';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  ChatboxComponent,
+  ChatMessageComponent,
+  ListComponent,
+} from './pages/chatbox';
+import { UXModule } from './UX-lib.module';
 
 const routes = [
   {
@@ -39,7 +41,6 @@ const routes = [
     FormsModule,
     UsersModule,
     HttpClientModule,
-    CheckboxModule,
     RouterModule.forRoot(routes),
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WebSocketService } from '../../services/web-socket.service';
 import { Room } from '../../models';
 import { User } from '@appbit/users';
+import { SocketEvents } from '../../models/socket-events';
 @Component({
   selector: 'appbit-chatbox',
   templateUrl: './chatbox.component.html',
@@ -17,7 +18,7 @@ export class ChatboxComponent implements OnInit {
   }
 
   private _listenRooms() {
-    this.webSocketService.listen('roomList').subscribe((rooms) => {
+    this.webSocketService.listen(SocketEvents.roomList).subscribe((rooms) => {
       this.rooms = rooms as Room[];
     });
   }

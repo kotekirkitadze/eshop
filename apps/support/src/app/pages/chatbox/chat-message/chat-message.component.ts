@@ -4,6 +4,7 @@ import { Room } from '../../../models';
 import { SelectionEventService } from '../../../services/selectionEvent.service';
 import { WebSocketService } from '../../../services/web-socket.service';
 import { Message } from '../../../models/model';
+import { SocketEvents } from '../../../models/socket-events';
 @Component({
   selector: 'appbit-chat-message',
   templateUrl: './chat-message.component.html',
@@ -30,6 +31,14 @@ export class ChatMessageComponent implements OnInit, OnDestroy {
     this.endSubs$.complete();
   }
 
+  startWriting() {
+    console.log('started');
+  }
+
+  stopWriting() {
+    console.log('stopped writing');
+  }
+
   private _listenSelectedRoom() {
     this.selectionEventService.selectedUser$
       .pipe(takeUntil(this.endSubs$))
@@ -40,7 +49,7 @@ export class ChatMessageComponent implements OnInit, OnDestroy {
 
   private _listenMessage() {
     this.webSocketService
-      .listen('message')
+      .listen(SocketEvents.message)
       .pipe(takeUntil(this.endSubs$))
       .subscribe((message: any) => this.generateMessage(message, false));
   }
@@ -57,13 +66,16 @@ export class ChatMessageComponent implements OnInit, OnDestroy {
   }
 
   sendMessage(): void {
-    this.webSocketService.emit('chatMessage', this.message);
+    this.webSocketService.emit(SocketEvents.chatMessage, this.message);
     this.generateMessage('_', true);
     this.message = '';
   }
 
   completeRoom() {
-    this.webSocketService.emit('userCompleteChat', this.room?.userId);
+    this.webSocketService.emit(
+      SocketEvents.userCompleteChat,
+      this.room?.userId
+    );
     this.selectionEventService.changeSelectedUser(null);
     this._resetValues();
   }
