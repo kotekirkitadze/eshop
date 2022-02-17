@@ -402,3 +402,81 @@ body {
   border-radius: 30px;
   font-size: 1em;
 }
+
+.is-typing {
+  position: absolute;
+  margin-left: 54px;
+  top: 620px;
+  // margin-top: 90px;
+  width: 50px;
+  order: 1;
+  justify-content: space-around;
+  display: flex;
+}
+
+.jump1,
+.jump2,
+.jump3,
+.jump4,
+.jump5 {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background-color: gray;
+}
+
+.jump1 {
+  animation: typing 1.5s linear infinite;
+  animation-delay: 01.1s;
+}
+
+.jump2 {
+  animation: typing 1.5s linear infinite;
+  animation-delay: 01.2s;
+}
+
+.jump3 {
+  animation: typing 1.5s linear infinite;
+  animation-delay: 01.3s;
+}
+
+.jump4 {
+  animation: typing 1.5s linear infinite;
+  animation-delay: 01.4s;
+}
+
+.jump5 {
+  animation: typing 1.5s linear infinite;
+  animation-delay: 1.5s;
+}
+
+@keyframes typing {
+  0% {
+    transform: translateY(0px);
+  }
+
+  25% {
+    transform: translateY(0px);
+  }
+
+  35% {
+    transform: translateY(15px);
+  }
+
+  45% {
+    transform: translateY(0px);
+  }
+
+  60% {
+    transform: translateY(-15px);
+  }
+
+  75% {
+    background-color: white;
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}

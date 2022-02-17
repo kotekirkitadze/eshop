@@ -17,6 +17,8 @@
   </div>
   <div class="chat-form">
     <textarea
+      (focus)="isWriting(true)"
+      (focusout)="isWriting(false)"
       [(ngModel)]="message"
       name=""
       id=""

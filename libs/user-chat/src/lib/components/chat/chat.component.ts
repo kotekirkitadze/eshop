@@ -22,6 +22,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   message = '';
   messages: Message[] = [];
   endSubs$: Subject<number> = new Subject<number>();
+  controller = false;
   constructor(
     private route: ActivatedRoute,
     private userDetailService: UserDetailService,
@@ -86,5 +87,9 @@ export class ChatComponent implements OnInit, OnDestroy {
           });
       }
     });
+  }
+
+  isWriting(controller: boolean) {
+    this.socketService.emit('startWriting', controller);
   }
 }

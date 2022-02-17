@@ -11,6 +11,7 @@ import { SocketEvents } from '../../../models/socket-events';
   styleUrls: ['./chat-message.component.scss'],
 })
 export class ChatMessageComponent implements OnInit, OnDestroy {
+  isWriting = false;
   room: Partial<Room> | undefined = {};
   message = '';
   messages: Message[] = [];
@@ -24,6 +25,7 @@ export class ChatMessageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._listenSelectedRoom();
     this._listenMessage();
+    this.listenWriting();
   }
 
   ngOnDestroy(): void {
@@ -83,5 +85,11 @@ export class ChatMessageComponent implements OnInit, OnDestroy {
   private _resetValues(): void {
     this.messages = [];
     this.room = undefined;
+  }
+
+  listenWriting() {
+    this.webSocketService.listen('startWriting').subscribe((isWriting) => {
+      this.isWriting = isWriting as boolean;
+    });
   }
 }
