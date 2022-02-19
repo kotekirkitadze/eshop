@@ -13,6 +13,8 @@ import { UserDetailService } from '../../services/user-detail.service';
 export class ChatComponent implements OnInit, OnDestroy {
   currentUser: User = {};
   message = '';
+  typingImage = '';
+  supportWritingController = false;
   messages: Message[] = [];
   endSubs$: Subject<number> = new Subject<number>();
   controller = false;
@@ -21,6 +23,13 @@ export class ChatComponent implements OnInit, OnDestroy {
     private userDetailService: UserDetailService,
     private socketService: SocketService
   ) {}
+
+  private _listenBotMessage() {
+    this.socketService.listen('botMessage').subscribe((payload: any) => {
+      this.typingImage = payload.image;
+      console.log(payload);
+    });
+  }
 
   listenMessage() {
     this.socketService.listen('message').subscribe((message: any) => {
@@ -31,19 +40,30 @@ export class ChatComponent implements OnInit, OnDestroy {
         message: message.text,
         image: message.image,
       });
+      // this.typingImage = message.image;
+      // console.log(this.messages);
     });
   }
 
   ngOnInit(): void {
+    this._listenBotMessage();
     this.listenMessage();
     this._checkIdAndGetData();
     this._listenSupportCompleteChatEvent();
+    this._listenWriting();
   }
 
   ngOnDestroy(): void {
     this.endSubs$.next(1);
     this.endSubs$.complete();
     this.socketService.disconnect();
+  }
+
+  private _listenWriting() {
+    this.socketService.listen('startWriting').subscribe((writingData: any) => {
+      if (writingData.roomId == this.currentUser.id)
+        this.supportWritingController = writingData.controller;
+    });
   }
 
   joinSupportRoom(user: User) {

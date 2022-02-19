@@ -27,6 +27,7 @@ export class ChatMessageComponent implements OnInit, OnDestroy {
     this._listenSelectedRoom();
     this._listenMessage();
     this.listenWriting();
+    this._listenBotMessage();
   }
 
   ngOnDestroy(): void {
@@ -34,8 +35,8 @@ export class ChatMessageComponent implements OnInit, OnDestroy {
     this.endSubs$.complete();
   }
 
-  startWriting() {
-    console.log('started');
+  startWriting(controller: boolean) {
+    this.webSocketService.emit(SocketEvents.startWriting, controller);
   }
 
   stopWriting() {

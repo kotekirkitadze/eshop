@@ -403,15 +403,40 @@ body {
   font-size: 1em;
 }
 
-.is-typing {
+.typingContainer {
   position: absolute;
-  margin-left: 54px;
-  top: 620px;
+  z-index: 1;
+  bottom: 70px;
+  left: 25px;
+  display: flex;
+  align-items: flex-end;
+}
+.is-typing {
+  // position: absolute;
+  // margin-left: 54px;
+  // top: 620px;
+  margin-bottom: 10px;
   // margin-top: 90px;
   width: 50px;
   order: 1;
   justify-content: space-around;
   display: flex;
+}
+
+.typingImage {
+  width: 60px;
+  height: 56px;
+  margin-right: 17px;
+  margin-left: 17px;
+  background: #ccc;
+  border-radius: 50%;
+  /* margin-top: 20ppx; */
+  overflow: hidden;
+  //Image
+  // background: url('./mypic.jfif') no-repeat center center;
+  background-size: cover;
+  /* height: 60px;
+	width: 60px; */
 }
 
 .jump1,

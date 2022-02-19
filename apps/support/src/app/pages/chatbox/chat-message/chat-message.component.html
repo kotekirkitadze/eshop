@@ -32,18 +32,24 @@
     </div>
   </div>
   <!-- typing -->
-  <div class="is-typing" *ngIf="isWriting">
-    <div class="jump1"></div>
-    <div class="jump2"></div>
-    <div class="jump3"></div>
-    <div class="jump4"></div>
-    <div class="jump5"></div>
+  <div *ngIf="isWriting" class="typingContainer">
+    <div
+      class="typingImage"
+      [style.background-image]="'url(' + room.userImage + ')'"
+    ></div>
+    <div class="is-typing">
+      <div class="jump1"></div>
+      <div class="jump2"></div>
+      <div class="jump3"></div>
+      <div class="jump4"></div>
+      <div class="jump5"></div>
+    </div>
   </div>
   <!-- chat input -->
   <div class="chatbox_input">
     <input
-      (focus)="startWriting()"
-      (focusout)="stopWriting()"
+      (focus)="startWriting(true)"
+      (focusout)="startWriting(false)"
       [(ngModel)]="message"
       placeholder="Type a message"
     />
