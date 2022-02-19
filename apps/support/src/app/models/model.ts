@@ -4,6 +4,7 @@ export interface Message {
   message: string;
   time: string;
   image?: string;
+  isBot: boolean;
 }
 
 export interface WritingEvenetData {

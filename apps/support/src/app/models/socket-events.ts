@@ -4,6 +4,6 @@ export enum SocketEvents {
   chatMessage = 'chatMessage',
   userCompleteChat = 'userCompleteChat',
   message = 'message',
+  botMessage = 'botMessage',
   startWriting = 'startWriting',
-  stopWriting = 'stopWriting',
 }

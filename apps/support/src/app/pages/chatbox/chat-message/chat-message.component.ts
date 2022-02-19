@@ -57,8 +57,19 @@ export class ChatMessageComponent implements OnInit, OnDestroy {
       .subscribe((message: any) => this.generateMessage(message, false));
   }
 
-  generateMessage(message: any, isSelf: boolean): void {
+  private _listenBotMessage() {
+    this.webSocketService
+      .listen(SocketEvents.botMessage)
+      .subscribe((payload: any) => {
+        if (payload.roomId == this.room?.userId) {
+          this.generateMessage(payload.text, false, true);
+        }
+      });
+  }
+
+  generateMessage(message: any, isSelf: boolean, isBot: boolean = false): void {
     const newMessage: Message = {
+      isBot,
       isSelf: isSelf,
       name: isSelf ? this.room?.name : message.username,
       message: isSelf ? this.message : message.text,
