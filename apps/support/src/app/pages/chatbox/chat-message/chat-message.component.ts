@@ -5,6 +5,7 @@ import { SelectionEventService } from '../../../services/selectionEvent.service'
 import { WebSocketService } from '../../../services/web-socket.service';
 import { Message } from '../../../models/model';
 import { SocketEvents } from '../../../models/socket-events';
+
 @Component({
   selector: 'appbit-chat-message',
   templateUrl: './chat-message.component.html',
@@ -86,10 +87,21 @@ export class ChatMessageComponent implements OnInit, OnDestroy {
     this.messages = [];
     this.room = undefined;
   }
-
   listenWriting() {
-    this.webSocketService.listen('startWriting').subscribe((isWriting) => {
-      this.isWriting = isWriting as boolean;
-    });
+    this.webSocketService
+      .listen(SocketEvents.startWriting)
+      .subscribe((writingData: any) => {
+        if (writingData.roomId == this.room?.userId)
+          this.isWriting = writingData.controller;
+      });
   }
 }
+
+//  listenWriting() {
+//     this.webSocketService
+//       .listen('startWriting')
+//       .subscribe((writingData: any) => {
+//         if (writingData.roomId == this.room?.userId)
+//           this.isWriting = writingData.controller as boolean;
+//       });
+//   }

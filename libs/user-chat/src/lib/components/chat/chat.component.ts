@@ -44,6 +44,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.listenMessage();
     this._checkIdAndGetData();
+    this._listenSupportCompleteChatEvent();
   }
 
   ngOnDestroy(): void {
@@ -59,6 +60,16 @@ export class ChatComponent implements OnInit, OnDestroy {
       name: user.name,
       email: user.email,
       userImage: user.image,
+    });
+  }
+
+  private _listenSupportCompleteChatEvent() {
+    this.socketService.listen('userCompleteChat').subscribe((room: any) => {
+      if (this.currentUser) {
+        if (this.currentUser.id == room) {
+          this.socketService.disconnect();
+        }
+      }
     });
   }
 

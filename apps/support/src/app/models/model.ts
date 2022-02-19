@@ -5,3 +5,8 @@ export interface Message {
   time: string;
   image?: string;
 }
+
+export interface WritingEvenetData {
+  roomId: any;
+  controller: any;
+}

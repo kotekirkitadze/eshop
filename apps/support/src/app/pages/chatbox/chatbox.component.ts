@@ -3,6 +3,7 @@ import { WebSocketService } from '../../services/web-socket.service';
 import { Room } from '../../models';
 import { User } from '@appbit/users';
 import { SocketEvents } from '../../models/socket-events';
+
 @Component({
   selector: 'appbit-chatbox',
   templateUrl: './chatbox.component.html',
