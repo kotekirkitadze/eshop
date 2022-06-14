@@ -1,7 +1,6 @@
-<div class="profile">
+<!-- <div class="profile">
   <div class="profile-img-container">
     <img [src]="imageDisplay" class="profile-img-container-el" />
-    <!-- <i *ngIf="!imageDisplay" class="pi pi-user" style="font-size: 2rem"></i> -->
     <div class="profile-img-container-changerDiv bounce child">
       <div class="upload-btn-wrapper">
         <button class="btn">
@@ -11,10 +10,17 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
-<!-- <img
-      class="profile-img-container-el"
-      [src]="imageDisplay"
-      src="https://commschool.ge/wp-content/uploads/2021/07/kote-960x604.png"
-    /> -->
+<div class="image">
+  <figure class="image__shape">
+    <img [src]="imageDisplay" alt="Person on a tour" class="image__img" />
+    <figcaption class="image__caption">Upload</figcaption>
+  </figure>
+  <input
+    type="file"
+    class="image__input"
+    (change)="onImageUpload($event)"
+    name="myfile"
+  />
+</div>
